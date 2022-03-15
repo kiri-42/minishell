@@ -14,15 +14,20 @@ static bool	is_invalid(t_list *left_tokens, t_cmd **cmd)
 	return (false);
 }
 
+static void	check_valid(t_list *right_tokens, t_list **lst)
+{
+	if (((t_token *)right_tokens->content)->type == TOKEN_EOF)
+		((t_cmd *)(*lst)->content)->is_invalid_syntax = true;
+}
+
 t_list	*parse_pipe_helper(t_list *token_list, t_list **heredocs)
 {
-	t_list	*left_tokens;
 	t_list	*right_tokens;
+	t_list	*left_tokens;
 	t_token	*token;
 	t_list	*lst;
 	t_cmd	*cmd;
 
-	cmd = NULL;
 	left_tokens = token_list;
 	if (is_invalid(left_tokens, &cmd))
 		return (ft_lstnew(cmd));
@@ -35,8 +40,7 @@ t_list	*parse_pipe_helper(t_list *token_list, t_list **heredocs)
 		{
 			right_tokens = token_list->next;
 			lst = parse_pipe_helper(right_tokens, heredocs);
-			if (((t_token *)right_tokens->content)->type == TOKEN_EOF)
-				((t_cmd *)lst->content)->is_invalid_syntax = true;
+			check_valid(right_tokens, &lst);
 			ft_lstadd_front(&lst, ft_lstnew(parse_cmd(left_tokens, heredocs)));
 			return (lst);
 		}
