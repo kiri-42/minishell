@@ -3,16 +3,15 @@
 #include "libft.h"
 #include "parser.h"
 
-t_list	*parse_pipe_helper(t_list *token_list, t_list **heredocs);
-
-t_list	*parse_pipe(t_list *token_list, t_list **heredocs)
+static bool	is_invalid(t_list *left_tokens, t_cmd **cmd)
 {
-	t_list	*result;
-
-	result = parse_pipe_helper(token_list, heredocs);
-	if (result == NULL)
-		return (NULL);
-	return (result);
+	if (((t_token *)left_tokens->content)->type == TOKEN_EOF)
+	{
+		*cmd = cmd_init();
+		(*cmd)->is_invalid_syntax = true;
+		return (true);
+	}
+	return (false);
 }
 
 t_list	*parse_pipe_helper(t_list *token_list, t_list **heredocs)
@@ -23,13 +22,10 @@ t_list	*parse_pipe_helper(t_list *token_list, t_list **heredocs)
 	t_list	*lst;
 	t_cmd	*cmd;
 
+	cmd = NULL;
 	left_tokens = token_list;
-	if (((t_token *)left_tokens->content)->type == TOKEN_EOF)
-	{
-		cmd = cmd_init();
-		cmd->is_invalid_syntax = true;
+	if (is_invalid(left_tokens, &cmd))
 		return (ft_lstnew(cmd));
-	}
 	while (token_list != NULL)
 	{
 		token = token_list->content;
@@ -47,4 +43,14 @@ t_list	*parse_pipe_helper(t_list *token_list, t_list **heredocs)
 		token_list = token_list->next;
 	}
 	return (ft_lstnew(parse_cmd(left_tokens, heredocs)));
+}
+
+t_list	*parse_pipe(t_list *token_list, t_list **heredocs)
+{
+	t_list	*result;
+
+	result = parse_pipe_helper(token_list, heredocs);
+	if (result == NULL)
+		return (NULL);
+	return (result);
 }
