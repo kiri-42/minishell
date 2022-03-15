@@ -10,7 +10,7 @@ char	*ft_strdup(const char *s)
 	if (s == NULL)
 		return (NULL);
 	len = ft_strlen(s);
-	str = (char *)malloc(sizeof(char) * (len + 1));
+	str = (char *)ft_xmalloc(sizeof(char) * (len + 1));
 	if (str == NULL)
 		return (NULL);
 	ft_strlcpy(str, s, len + 1);
