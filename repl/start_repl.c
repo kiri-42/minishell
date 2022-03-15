@@ -34,7 +34,7 @@ bool	command_process(t_exec_attr *ea)
 {
 	if (!is_valid_cmds(ea->cmd_lst))
 	{
-		write(STDERR, "syntax error\n", 13);
+		ft_put_error("syntax error");
 		g_exit_status = 2;
 		ft_lstclear(&ea->cmd_lst, delete_pipe);
 		ea->cmd_lst = NULL;
