@@ -94,5 +94,8 @@ bool	ft_lstdel(t_list *lst, t_list *target);
 t_list	*ft_my_lstpop_front(t_list **lst);
 void 	ft_lstiter_with_var(t_list *lst, void (*f)(void *, void *), void *var);
 
+// x関数
+void	*ft_xmalloc(size_t size);
+
 
 #endif
