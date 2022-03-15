@@ -17,7 +17,7 @@ char	**ft_split(char const *str, char c)
 	if (str == NULL)
 		return (NULL);
 	col = count_cols(str, c);
-	res = (char **)malloc(sizeof(char *) * (col + 1));
+	res = (char **)ft_xmalloc(sizeof(char *) * (col + 1));
 	if (res == NULL)
 		return (NULL);
 	res = set_words(res, str, col, c);

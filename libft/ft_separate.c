@@ -23,7 +23,7 @@ char	**ft_separate(char *str, char separator)
 	if (sep_ptr == NULL)
 		return (NULL);
 	// 文字数 + NULL
-	array = (char **)malloc(sizeof(char *) * (2 + 1));
+	array = (char **)ft_xmalloc(sizeof(char *) * (2 + 1));
 	// separator文字の後が'\0'の場合、array[1]はNULLとする。
 	if (*(sep_ptr + 1) == '\0')
 	{

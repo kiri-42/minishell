@@ -4,7 +4,7 @@ void	*ft_kvsnew(char *key, char *value)
 {
 	t_kvs	*kvs;
 
-	kvs = (t_kvs *)malloc(sizeof(t_kvs));
+	kvs = (t_kvs *)ft_xmalloc(sizeof(t_kvs));
 	if (kvs == NULL)
 		return (NULL);
 	kvs->key = ft_strdup(key);

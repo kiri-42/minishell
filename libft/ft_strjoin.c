@@ -21,7 +21,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		errno = ENOMEM;
 		return (NULL);
 	}
-	res = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
+	res = (char *)ft_xmalloc(sizeof(char) * (s1_len + s2_len + 1));
 	if (res == NULL)
 		return (NULL);
 	ft_strlcpy(res, s1, s1_len + 1);

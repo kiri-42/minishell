@@ -18,7 +18,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 		errno = ENOMEM;
 		return (NULL);
 	}
-	res = (void *)malloc(nmemb * size);
+	res = (void *)ft_xmalloc(nmemb * size);
 	if (res == NULL)
 		return (NULL);
 	ft_bzero(res, size * nmemb);
