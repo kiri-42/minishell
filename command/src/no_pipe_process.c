@@ -15,45 +15,13 @@ bool	is_path(char *cmd)
 	return (false);
 }
 
-void	execute_ext_cmd(t_cmd *c, t_exec_attr *ea)
+void fork_process(char	*cmd_path, t_exec_attr *ea, t_cmd *c, char **cmdv)
 {
 	pid_t	cpid;
-	pid_t	wait_ret;
 	int		status;
-	char	**cmdv;
-	char	*cmd_path;
+	pid_t	wait_ret;
 	char	**environ;
 
-	cmdv = convert_lst_to_argv(c->args);
-	if (is_path(c->cmd))
-	{
-		cmd_path = ft_strdup(c->cmd);
-		if (cmd_path == NULL)
-		{
-			printf("ft_strdup error\n");
-			exit(EXIT_FAILURE);
-		}
-	}
-	else
-	{
-		cmd_path = find_path(c->cmd, ea, 0);
-		if (cmd_path == NULL)
-		{
-			free_char_dptr(cmdv);
-			if (ea->is_unpermitted[0])
-			{
-				ft_put_cmd_error(c->cmd, "Permission denied");
-				g_exit_status = 126;
-				return ;
-			}
-			else
-			{
-				ft_put_cmd_error(c->cmd, "command not found");
-				g_exit_status = 127;
-				return ;
-			}
-		}
-	}
 	environ = convert_envlst_to_array(ea);
 	cpid = fork();
 	if (cpid == -1)
@@ -95,6 +63,44 @@ void	execute_ext_cmd(t_cmd *c, t_exec_attr *ea)
 		if (!WIFSIGNALED(status))
 			g_exit_status = WEXITSTATUS(status);
 	}
+}
+
+void	execute_ext_cmd(t_cmd *c, t_exec_attr *ea)
+{
+	char	**cmdv;
+	char	*cmd_path;
+
+	cmdv = convert_lst_to_argv(c->args);
+	if (is_path(c->cmd))
+	{
+		cmd_path = ft_strdup(c->cmd);
+		if (cmd_path == NULL)
+		{
+			printf("ft_strdup error\n");
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		cmd_path = find_path(c->cmd, ea, 0);
+		if (cmd_path == NULL)
+		{
+			free_char_dptr(cmdv);
+			if (ea->is_unpermitted[0])
+			{
+				ft_put_cmd_error(c->cmd, "Permission denied");
+				g_exit_status = 126;
+				return ;
+			}
+			else
+			{
+				ft_put_cmd_error(c->cmd, "command not found");
+				g_exit_status = 127;
+				return ;
+			}
+		}
+	}
+	fork_process(cmd_path, ea, c, cmdv);
 }
 
 /* 135(if (has_redirect_file(c))):fileのopenの処理はコマンドに関わらず行う */
