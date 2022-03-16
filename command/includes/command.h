@@ -37,7 +37,7 @@
 # define PIPE 1
 
 // execute.c
-int			execute_cmd(t_exec_attr *ea);
+void		execute_cmd(t_exec_attr *ea);
 void		print_cmdv(char **cmdv);
 
 // execute_self.c
