@@ -24,7 +24,7 @@ bool	is_dir(char *cmd_path)
 	return (false);
 }
 
-bool	*malloc_has_not_permission(size_t size)
+bool	*malloc_is_unpermitted(size_t size)
 {
 	bool	*ret;
 

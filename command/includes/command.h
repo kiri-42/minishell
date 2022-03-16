@@ -82,7 +82,7 @@ void		free_pipe_attr(t_pipe_attr *pa);
 char		*get_filename(t_cmd *c, int io);
 void		exec_error(int cp_errno, char *cmd_path);
 bool		is_dir(char *cmd_path);
-bool		*malloc_has_not_permission(size_t size);
+bool		*malloc_is_unpermitted(size_t size);
 
 // execve_error.c
 void		execve_error(int cp_errno, char *cmd_path);

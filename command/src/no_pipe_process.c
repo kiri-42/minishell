@@ -127,7 +127,7 @@ void	no_pipe_process(t_exec_attr *ea)
 	t_cmd *c;
 
 	c = get_cmd(ea);
-	ea->has_not_permission = malloc_has_not_permission(1);
+	ea->has_not_permission = malloc_is_unpermitted(1);
 	// fileのopenの処理はコマンドに関わらず行う
 	if (has_redirect_file(c))
 		if (!open_files(c, ea))
@@ -135,7 +135,7 @@ void	no_pipe_process(t_exec_attr *ea)
 			free(ea->has_not_permission);
 			return ;
 		}
-			
+
 	// TODO: コマンドが存在しない時、ここでsegvする
 	if (c->cmd == NULL)
 	{

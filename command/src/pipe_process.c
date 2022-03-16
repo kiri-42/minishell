@@ -193,7 +193,7 @@ void	pipe_process(t_exec_attr *ea, int pipe_count)
 	pa.pipe_count = pipe_count;
 	malloc_pipe_fd(&pa);
 	malloc_cpid_array(&pa);
-	ea->has_not_permission = malloc_has_not_permission(pa.pipe_count + 1);
+	ea->has_not_permission = malloc_is_unpermitted(pa.pipe_count + 1);
 	pa.cmd_i = 0;
 	tmp = ea->cmd_lst;
 	while (pa.cmd_i < pa.pipe_count + 1)
