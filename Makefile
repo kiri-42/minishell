@@ -157,7 +157,7 @@ SRCS_TEST = test/test_helper.cpp\
 			test/redirect_parser_test.cpp\
 			test/pipe_parser_test.cpp\
 
-test_sh: re
+test_sh:all
 	make -C test/test_sh
 
 .PHONY: test
