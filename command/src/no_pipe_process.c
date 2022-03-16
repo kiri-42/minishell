@@ -130,12 +130,13 @@ void	no_pipe_process(t_exec_attr *ea)
 	ea->is_unpermitted = malloc_is_unpermitted(1);
 	// fileのopenの処理はコマンドに関わらず行う
 	if (has_redirect_file(c))
+	{
 		if (!open_files(c, ea))
 		{
 			free(ea->is_unpermitted);
 			return ;
 		}
-
+	}
 	// TODO: コマンドが存在しない時、ここでsegvする
 	if (c->cmd == NULL)
 	{
