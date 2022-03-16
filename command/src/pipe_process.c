@@ -103,6 +103,12 @@ void	wait_process(t_pipe_attr *pa)
 	}
 }
 
+static void	print_error_and_exit(char *cmd, int exits, char *err)
+{
+	ft_put_cmd_error(cmd, err);
+	exit(exits);
+}
+
 // TODO:構造体がexec単位でわけられているので、eaを渡したくない
 void	exec_cmd(t_exec_attr *ea, t_pipe_attr *pa)
 {
@@ -143,16 +149,9 @@ void	exec_cmd(t_exec_attr *ea, t_pipe_attr *pa)
 				if (cmd_path == NULL)
 				{
 					if (ea->is_unpermitted[pa->cmd_i])
-					{
-						ft_put_cmd_error(pa->current_cmd->cmd, "Permission denied");
-						exit(126);
-					}
+						print_error_and_exit(pa->current_cmd->cmd, 126, "Permission denied");
 					else
-					{
-						ft_put_cmd_error(pa->current_cmd->cmd, "command not found");
-						g_exit_status = 127;
-						exit(127);
-					}
+						print_error_and_exit(pa->current_cmd->cmd, 127, "command not found");
 				}
 			}
 			// cmd_pathがディレクトリか確認する処理
