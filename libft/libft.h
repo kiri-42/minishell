@@ -96,6 +96,7 @@ void 	ft_lstiter_with_var(t_list *lst, void (*f)(void *, void *), void *var);
 
 // x関数
 void	*ft_xmalloc(size_t size);
+pid_t	ft_xfork(void);
 
 
 #endif

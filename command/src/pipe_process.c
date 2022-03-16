@@ -139,14 +139,9 @@ void	exec_cmd(t_exec_attr *ea, t_pipe_attr *pa)
 	char	*cmd_path;
 
 	cmd_path = NULL;
-	pid = fork();
+	pid = ft_xfork();
 	pa->cpid_array[pa->cmd_i] = pid;
-	if (pid == -1)
-	{
-		printf("fork error\n");
-		exit(EXIT_FAILURE);
-	}
-	else if (pid == 0)
+	if (pid == 0)
 	{
 		if (has_redirect_file(pa->current_cmd))
 			open_files_in_pipe(pa->current_cmd, ea);
