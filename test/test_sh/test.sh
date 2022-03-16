@@ -9,8 +9,8 @@ readonly MINISHELL_DIR="../../"
 #-------------------------------------
 
 readonly MINISHELL_PATH="${MINISHELL_DIR}${MINISHELL_EXE}"
-readonly LOG_FILE_NAME="result.log"
 
+readonly LOG_FILE_NAME="result.log"
 source help/helper.sh
 
 rm -f "${TMP_DIR}/*" "${LOG_FILE}"

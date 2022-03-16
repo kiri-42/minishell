@@ -1,0 +1,3 @@
+mkdir dir
+cd dir
+pwd
