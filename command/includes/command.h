@@ -72,6 +72,11 @@ void		no_pipe_process(t_exec_attr *ea);
 void		execute_ext_cmd(t_cmd *c, t_exec_attr *ea);
 bool		is_path(char *cmd);
 
+// no_pipe_process_2.c
+bool	is_path(char *cmd);
+void	print_error_and_set_es(char *cmd, int exits, char *err);
+bool	check_redirect_file(t_cmd *c, t_exec_attr *ea);
+
 // pipe_process.c
 void		pipe_process(t_exec_attr *ea, int pipe_count);
 

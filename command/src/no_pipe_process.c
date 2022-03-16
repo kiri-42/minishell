@@ -1,28 +1,58 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   no_pipe_process.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/16 16:53:46 by tkirihar          #+#    #+#             */
+/*   Updated: 2022/03/16 16:53:47 by tkirihar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "command.h"
 
-bool	is_path(char *cmd)
+static void	child_process(char *cmd_path, char **cmdv, t_cmd *c, \
+							t_exec_attr *ea)
 {
-	size_t	i;
-
-	i = 0;
-	while (cmd[i] != '\0')
-	{
-		if (cmd[i] == '/')
-			return (true);
-		i++;
-	}
-	return (false);
-}
-
-void fork_process(char	*cmd_path, t_exec_attr *ea, t_cmd *c, char **cmdv)
-{
-	pid_t	cpid;
-	int		status;
-	pid_t	wait_ret;
 	char	**environ;
 
 	environ = convert_envlst_to_array(ea);
+	if (is_dir(cmd_path))
+	{
+		ft_put_cmd_error(c->cmd, "is a directory");
+		exit(126);
+	}
+	if (has_redirect_file(c))
+		redirect(c, ea);
+	if (execve(cmd_path, cmdv, environ) == -1)
+		execve_error(errno, c->cmd);
+}
+
+static void	parent_process(char *cmd_path, char **cmdv, pid_t cpid)
+{
+	pid_t	wait_ret;
+	int		status;
+
+	free(cmd_path);
+	free_char_dptr(cmdv);
+	while (true)
+	{
+		wait_ret = waitpid(cpid, &status, 0);
+		if (wait_ret > 0)
+			break ;
+		if (WIFSIGNALED(status))
+			continue ;
+		exit(EXIT_FAILURE);
+	}
+	if (!WIFSIGNALED(status))
+		g_exit_status = WEXITSTATUS(status);
+}
+
+void	fork_process(char *cmd_path, t_exec_attr *ea, t_cmd *c, char **cmdv)
+{
+	pid_t	cpid;
+
 	cpid = fork();
 	if (cpid == -1)
 	{
@@ -30,46 +60,9 @@ void fork_process(char	*cmd_path, t_exec_attr *ea, t_cmd *c, char **cmdv)
 		exit(EXIT_FAILURE);
 	}
 	else if (cpid == 0)
-	{
-		if (is_dir(cmd_path))
-		{
-			ft_put_cmd_error(c->cmd, "is a directory");
-			exit(126);
-		}
-		if (has_redirect_file(c))
-			redirect(c, ea);
-		if (execve(cmd_path, cmdv, environ) == -1)
-		{
-			execve_error(errno, c->cmd);
-		}
-		free(cmd_path);
-		free_char_dptr(cmdv);
-		free_char_dptr(environ);
-	}
+		child_process(cmd_path, cmdv, c, ea);
 	else
-	{
-		free(cmd_path);
-		free_char_dptr(cmdv);
-		free_char_dptr(environ);
-		while (true)
-		{
-			wait_ret = waitpid(cpid, &status, 0);
-			if (wait_ret > 0)
-				break ;
-			if (WIFSIGNALED(status))
-				continue ;
-			exit(EXIT_FAILURE);
-		}
-		if (!WIFSIGNALED(status))
-			g_exit_status = WEXITSTATUS(status);
-	}
-}
-
-static void	print_error_and_set_es(char *cmd, int exits, char *err)
-{
-	ft_put_cmd_error(cmd, err);
-	g_exit_status = exits;
-	return ;
+		parent_process(cmd_path, cmdv, cpid);
 }
 
 void	execute_ext_cmd(t_cmd *c, t_exec_attr *ea)
@@ -98,19 +91,6 @@ void	execute_ext_cmd(t_cmd *c, t_exec_attr *ea)
 
 /* 135(if (has_redirect_file(c))):fileのopenの処理はコマンドに関わらず行う */
 /* 144(if (c->cmd == NULL)):TODO: コマンドが存在しない時、ここでsegvする */
-
-static bool	check_redirect_file(t_cmd *c, t_exec_attr *ea)
-{
-	if (has_redirect_file(c))
-	{
-		if (!open_files(c, ea))
-		{
-			free(ea->is_unpermitted);
-			return (true);
-		}
-	}
-	return (false);
-}
 
 void	no_pipe_process(t_exec_attr *ea)
 {

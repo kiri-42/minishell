@@ -11,6 +11,7 @@ SRCNAME	:=	execute_builtin.c \
 			create_cmd.c \
 			convert_lst_to_argv.c \
 			no_pipe_process.c \
+			no_pipe_process_2.c \
 			pipe_process.c \
 			free_pipe_attr.c \
 			exec_attribute_utils.c \
