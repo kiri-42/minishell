@@ -109,17 +109,36 @@ static void	print_error_and_exit(char *cmd, int exits, char *err)
 	exit(exits);
 }
 
+static void	run_cmd(t_exec_attr *ea, t_pipe_attr *pa, char *cmd_path)
+{
+	char	**cmdv;
+	char	**environ;
+
+	environ = convert_envlst_to_array(ea);
+	cmdv = convert_lst_to_argv(pa->current_cmd->args);
+	if (is_self_cmd(pa->current_cmd->cmd))
+	{
+		execute_self_cmd(pa->current_cmd, ea, PIPE);
+		free(cmd_path);
+		exit(0);
+	}
+	else
+	{
+		if (execve(cmd_path, cmdv, environ) == -1)
+		{
+			execve_error(errno, pa->current_cmd->cmd);
+			exit(EXIT_FAILURE);
+		}
+	}
+}
+
 // TODO:構造体がexec単位でわけられているので、eaを渡したくない
 void	exec_cmd(t_exec_attr *ea, t_pipe_attr *pa)
 {
 	int		pid;
-	char	**cmdv;
 	char	*cmd_path;
-	char	**environ;
 
 	cmd_path = NULL;
-	cmdv = convert_lst_to_argv(pa->current_cmd->args);
-	environ = convert_envlst_to_array(ea);
 	pid = fork();
 	pa->cpid_array[pa->cmd_i] = pid;
 	if (pid == -1)
@@ -135,14 +154,7 @@ void	exec_cmd(t_exec_attr *ea, t_pipe_attr *pa)
 		if (!is_self_cmd(pa->current_cmd->cmd))
 		{
 			if (is_path(pa->current_cmd->cmd))
-			{
 				cmd_path = ft_strdup(pa->current_cmd->cmd);
-				if (cmd_path == NULL)
-				{
-					printf("ft_strdup error\n");
-					exit(EXIT_FAILURE);
-				}
-			}
 			else
 			{
 				cmd_path = find_path(pa->current_cmd->cmd, ea, pa->cmd_i);
@@ -156,32 +168,14 @@ void	exec_cmd(t_exec_attr *ea, t_pipe_attr *pa)
 			}
 			// cmd_pathがディレクトリか確認する処理
 			if (is_dir(cmd_path))
-			{
-				ft_put_cmd_error(pa->current_cmd->cmd, "is a directory");
-				exit(126);
-			}
+				print_error_and_exit(pa->current_cmd->cmd, 126, "is a directory");
 		}
 		if (has_redirect_file(pa->current_cmd))
 			redirect(pa->current_cmd, ea);
-		if (is_self_cmd(pa->current_cmd->cmd))
-			execute_self_cmd(pa->current_cmd, ea, PIPE);
-		else
-		{
-			if (execve(cmd_path, cmdv, environ) == -1)
-			{
-				execve_error(errno, pa->current_cmd->cmd);
-				exit(EXIT_FAILURE);
-			}
-		}
-		free(cmd_path);
-		exit(0);
+		run_cmd(ea, pa, cmd_path);
 	}
 	else if (pa->cmd_i > 0)
-	{
 		close_pipe(pa);
-	}
-	free_char_dptr(cmdv);
-	free_char_dptr(environ);
 }
 
 void	pipe_process(t_exec_attr *ea, int pipe_count)
