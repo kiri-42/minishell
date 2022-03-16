@@ -23,7 +23,7 @@ typedef struct s_exec_attr
 	t_list	*export_lst;
 	int		stdfd[3];
 	char	*current_pwd;
-	bool	*has_not_permission;
+	bool	*is_unpermitted;
 }	t_exec_attr;
 
 typedef struct s_env

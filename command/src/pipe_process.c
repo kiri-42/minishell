@@ -142,7 +142,7 @@ void	exec_cmd(t_exec_attr *ea, t_pipe_attr *pa)
 				cmd_path = find_path(pa->current_cmd->cmd, ea, pa->cmd_i);
 				if (cmd_path == NULL)
 				{
-					if (ea->has_not_permission[pa->cmd_i])
+					if (ea->is_unpermitted[pa->cmd_i])
 					{
 						ft_put_cmd_error(pa->current_cmd->cmd, "Permission denied");
 						exit(126);
@@ -193,7 +193,7 @@ void	pipe_process(t_exec_attr *ea, int pipe_count)
 	pa.pipe_count = pipe_count;
 	malloc_pipe_fd(&pa);
 	malloc_cpid_array(&pa);
-	ea->has_not_permission = malloc_is_unpermitted(pa.pipe_count + 1);
+	ea->is_unpermitted = malloc_is_unpermitted(pa.pipe_count + 1);
 	pa.cmd_i = 0;
 	tmp = ea->cmd_lst;
 	while (pa.cmd_i < pa.pipe_count + 1)
@@ -206,5 +206,5 @@ void	pipe_process(t_exec_attr *ea, int pipe_count)
 	}
 	wait_process(&pa);
 	free_pipe_attr(&pa);
-	free(ea->has_not_permission);
+	free(ea->is_unpermitted);
 }

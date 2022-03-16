@@ -136,7 +136,7 @@ char	*create_cmd_from_path(char *cmd, char **path, t_exec_attr *ea, size_t cmd_i
 	bool			is_break;
 
 	i = 0;
-	ea->has_not_permission[cmd_i] = false; // 初期化であって、権限があるわけではない
+	ea->is_unpermitted[cmd_i] = false; // 初期化であって、権限があるわけではない
 	while (path[i] != NULL)
 	{
 		is_break = false;
@@ -158,7 +158,7 @@ char	*create_cmd_from_path(char *cmd, char **path, t_exec_attr *ea, size_t cmd_i
 				if (!can_exec(new_cmd))
 				{
 					// 権限がなくてもエラーにはせず、PATHから他の実行ファイルが見つかるまでループを回す
-					ea->has_not_permission[cmd_i] = true;
+					ea->is_unpermitted[cmd_i] = true;
 					is_break = true;
 					free(new_cmd);
 					break ;

@@ -65,7 +65,7 @@ void	execute_ext_cmd(t_cmd *c, t_exec_attr *ea)
 		if (cmd_path == NULL)
 		{
 			free_char_dptr(cmdv);
-			if (ea->has_not_permission[0])
+			if (ea->is_unpermitted[0])
 			{
 				ft_put_cmd_error(c->cmd, "Permission denied");
 				g_exit_status = 126;
@@ -127,19 +127,19 @@ void	no_pipe_process(t_exec_attr *ea)
 	t_cmd *c;
 
 	c = get_cmd(ea);
-	ea->has_not_permission = malloc_is_unpermitted(1);
+	ea->is_unpermitted = malloc_is_unpermitted(1);
 	// fileのopenの処理はコマンドに関わらず行う
 	if (has_redirect_file(c))
 		if (!open_files(c, ea))
 		{
-			free(ea->has_not_permission);
+			free(ea->is_unpermitted);
 			return ;
 		}
 
 	// TODO: コマンドが存在しない時、ここでsegvする
 	if (c->cmd == NULL)
 	{
-		free(ea->has_not_permission);
+		free(ea->is_unpermitted);
 		return ;
 	}
 	if (is_self_cmd(c->cmd))
@@ -152,5 +152,5 @@ void	no_pipe_process(t_exec_attr *ea)
 	}
 	else
 		execute_ext_cmd(c, ea);
-	free(ea->has_not_permission);
+	free(ea->is_unpermitted);
 }
