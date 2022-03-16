@@ -65,6 +65,13 @@ void fork_process(char	*cmd_path, t_exec_attr *ea, t_cmd *c, char **cmdv)
 	}
 }
 
+static void	print_error_and_set_es(char *cmd, int exits, char *err)
+{
+	ft_put_cmd_error(cmd, err);
+	g_exit_status = exits;
+	return ;
+}
+
 void	execute_ext_cmd(t_cmd *c, t_exec_attr *ea)
 {
 	char	**cmdv;
@@ -72,14 +79,7 @@ void	execute_ext_cmd(t_cmd *c, t_exec_attr *ea)
 
 	cmdv = convert_lst_to_argv(c->args);
 	if (is_path(c->cmd))
-	{
 		cmd_path = ft_strdup(c->cmd);
-		if (cmd_path == NULL)
-		{
-			printf("ft_strdup error\n");
-			exit(EXIT_FAILURE);
-		}
-	}
 	else
 	{
 		cmd_path = find_path(c->cmd, ea, 0);
@@ -87,17 +87,10 @@ void	execute_ext_cmd(t_cmd *c, t_exec_attr *ea)
 		{
 			free_char_dptr(cmdv);
 			if (ea->is_unpermitted[0])
-			{
-				ft_put_cmd_error(c->cmd, "Permission denied");
-				g_exit_status = 126;
-				return ;
-			}
+				print_error_and_set_es(c->cmd, 126, "Permission denied");
 			else
-			{
-				ft_put_cmd_error(c->cmd, "command not found");
-				g_exit_status = 127;
-				return ;
-			}
+				print_error_and_set_es(c->cmd, 127, "command not found");
+			return ;
 		}
 	}
 	fork_process(cmd_path, ea, c, cmdv);
