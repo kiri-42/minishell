@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_my_putbase.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/17 23:25:55 by tkirihar          #+#    #+#             */
+/*   Updated: 2022/03/17 23:26:11 by tkirihar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 #include <limits.h>
+
 static char	*recursive_setnbr(uint64_t nbr, char *res, char *base);
 static int	count_digits(uint64_t nbr, char *base);
 
