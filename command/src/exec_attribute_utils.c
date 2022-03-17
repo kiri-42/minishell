@@ -5,7 +5,6 @@ t_cmd	*get_cmd(t_exec_attr *ea)
 	return ((t_cmd *)ea->cmd_lst->content);
 }
 
-// コマンド名をgetする
 char	*get_cmd_name(t_list *cmd_lst)
 {
 	t_cmd	*cmd;
