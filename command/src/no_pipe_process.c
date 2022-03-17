@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 16:53:46 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/16 16:53:47 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/16 17:30:30 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,8 @@ void	fork_process(char *cmd_path, t_exec_attr *ea, t_cmd *c, char **cmdv)
 {
 	pid_t	cpid;
 
-	cpid = fork();
-	if (cpid == -1)
-	{
-		perror("fork");
-		exit(EXIT_FAILURE);
-	}
-	else if (cpid == 0)
+	cpid = ft_xfork();
+	if (cpid == 0)
 		child_process(cmd_path, cmdv, c, ea);
 	else
 		parent_process(cmd_path, cmdv, cpid);

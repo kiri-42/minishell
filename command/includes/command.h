@@ -78,7 +78,14 @@ void	print_error_and_set_es(char *cmd, int exits, char *err);
 bool	check_redirect_file(t_cmd *c, t_exec_attr *ea);
 
 // pipe_process.c
-void		pipe_process(t_exec_attr *ea, int pipe_count);
+void	pipe_process(t_exec_attr *ea, int pipe_count);
+
+// pipe_process_2.c
+void	print_error_and_exit(char *cmd, int exits, char *err);
+void	make_pipe(t_pipe_attr *pa);
+
+// pipe_process_exec.c
+void	exec_cmd(t_exec_attr *ea, t_pipe_attr *pa);
 
 // free_pipe_attr.c
 void		free_pipe_attr(t_pipe_attr *pa);

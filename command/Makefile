@@ -13,6 +13,8 @@ SRCNAME	:=	execute_builtin.c \
 			no_pipe_process.c \
 			no_pipe_process_2.c \
 			pipe_process.c \
+			pipe_process_2.c \
+			pipe_process_exec.c \
 			free_pipe_attr.c \
 			exec_attribute_utils.c \
 			cmd_utils.c \
