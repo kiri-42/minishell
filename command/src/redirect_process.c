@@ -28,7 +28,7 @@ void	redirect_dev_null(t_exec_attr *ea)
 		exit(EXIT_FAILURE);
 	}
 	ft_xdup2(fd, STDOUT_FILENO);
-	close(fd);
+	ft_xclose(fd);
 }
 
 void	change_fd(t_list *files, bool is_in)
@@ -46,7 +46,7 @@ void	change_fd(t_list *files, bool is_in)
 			ft_xdup2(f->fd, STDIN_FILENO);
 		else
 			ft_xdup2(f->fd, STDOUT_FILENO);
-		close(f->fd);
+		ft_xclose(f->fd);
 		tmp = tmp->next;
 		i++;
 	}

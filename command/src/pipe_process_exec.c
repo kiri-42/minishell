@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:28:14 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 16:04:45 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/17 16:58:22 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ static void	set_cmd_path(char **cmd_path, t_pipe_attr *pa, t_exec_attr *ea)
 
 static void	close_pipe(t_pipe_attr *pa)
 {
-	close(pa->pipe_fd[pa->cmd_i - 1][PIPE_IN]);
-	close(pa->pipe_fd[pa->cmd_i - 1][PIPE_OUT]);
+	ft_xclose(pa->pipe_fd[pa->cmd_i - 1][PIPE_IN]);
+	ft_xclose(pa->pipe_fd[pa->cmd_i - 1][PIPE_OUT]);
 }
 
 static void	set_pipe_fd(t_pipe_attr *pa)
@@ -65,23 +65,23 @@ static void	set_pipe_fd(t_pipe_attr *pa)
 	if (pa->cmd_i == 0)
 	{
 		ft_xdup2(pa->pipe_fd[pa->cmd_i][PIPE_OUT], STDOUT_FILENO);
-		close(pa->pipe_fd[pa->cmd_i][PIPE_IN]);
-		close(pa->pipe_fd[pa->cmd_i][PIPE_OUT]);
+		ft_xclose(pa->pipe_fd[pa->cmd_i][PIPE_IN]);
+		ft_xclose(pa->pipe_fd[pa->cmd_i][PIPE_OUT]);
 	}
 	else if (pa->cmd_i == pa->pipe_count)
 	{
 		ft_xdup2(pa->pipe_fd[pa->cmd_i - 1][PIPE_IN], STDIN_FILENO);
-		close(pa->pipe_fd[pa->cmd_i - 1][PIPE_IN]);
-		close(pa->pipe_fd[pa->cmd_i - 1][PIPE_OUT]);
+		ft_xclose(pa->pipe_fd[pa->cmd_i - 1][PIPE_IN]);
+		ft_xclose(pa->pipe_fd[pa->cmd_i - 1][PIPE_OUT]);
 	}
 	else
 	{
 		ft_xdup2(pa->pipe_fd[pa->cmd_i - 1][PIPE_IN], STDIN_FILENO);
 		ft_xdup2(pa->pipe_fd[pa->cmd_i][PIPE_OUT], STDOUT_FILENO);
-		close(pa->pipe_fd[pa->cmd_i - 1][PIPE_IN]);
-		close(pa->pipe_fd[pa->cmd_i - 1][PIPE_OUT]);
-		close(pa->pipe_fd[pa->cmd_i][PIPE_IN]);
-		close(pa->pipe_fd[pa->cmd_i][PIPE_OUT]);
+		ft_xclose(pa->pipe_fd[pa->cmd_i - 1][PIPE_IN]);
+		ft_xclose(pa->pipe_fd[pa->cmd_i - 1][PIPE_OUT]);
+		ft_xclose(pa->pipe_fd[pa->cmd_i][PIPE_IN]);
+		ft_xclose(pa->pipe_fd[pa->cmd_i][PIPE_OUT]);
 	}
 }
 

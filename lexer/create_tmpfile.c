@@ -30,7 +30,7 @@ void	write_tmpfile(char *tmpfile, char *buf)
 		if (ret == -1)
 			exit(EXIT_FAILURE);
 	}
-	close(fd);
+	ft_xclose(fd);
 }
 
 void	create_tmpfile(char *tmpfile)
@@ -42,5 +42,5 @@ void	create_tmpfile(char *tmpfile)
 	fd = open(tmpfile, O_WRONLY | O_CREAT | O_TRUNC, 0600);
 	if (fd == -1)
 		exit(EXIT_FAILURE);
-	close(fd);
+	ft_xclose(fd);
 }
