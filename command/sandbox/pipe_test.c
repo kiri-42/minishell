@@ -82,20 +82,20 @@ void	set_pfd(int pipe_cnt, int command_i, int **pfd)
 {
 	if (command_i == 0)
 	{
-		dup2(pfd[command_i][1], 1);
+		ft_dup2(pfd[command_i][1], 1);
 		close(pfd[command_i][1]);
 		close(pfd[command_i][0]);
 	}
 	else if (command_i == pipe_cnt)
 	{
-		dup2(pfd[command_i - 1][0], 0);
+		ft_dup2(pfd[command_i - 1][0], 0);
 		close(pfd[command_i - 1][0]);
 		close(pfd[command_i - 1][1]);
 	}
 	else
 	{
-		dup2(pfd[command_i - 1][0], 0);
-		dup2(pfd[command_i][1], 1);
+		ft_dup2(pfd[command_i - 1][0], 0);
+		ft_dup2(pfd[command_i][1], 1);
 		close(pfd[command_i - 1][0]);
 		close(pfd[command_i - 1][1]);
 		close(pfd[command_i][0]);

@@ -27,7 +27,7 @@ void	redirect_dev_null(t_exec_attr *ea)
 		perror("open");
 		exit(EXIT_FAILURE);
 	}
-	dup2(fd, STDOUT_FILENO);
+	ft_xdup2(fd, STDOUT_FILENO);
 	close(fd);
 }
 
@@ -43,9 +43,9 @@ void	change_fd(t_list *files, bool is_in)
 	{
 		f = (t_file *)tmp->content;
 		if (is_in)
-			dup2(f->fd, STDIN_FILENO);
+			ft_xdup2(f->fd, STDIN_FILENO);
 		else
-			dup2(f->fd, STDOUT_FILENO);
+			ft_xdup2(f->fd, STDOUT_FILENO);
 		close(f->fd);
 		tmp = tmp->next;
 		i++;
@@ -63,9 +63,9 @@ void	redirect(t_cmd *cmd, t_exec_attr *ea)
 
 void	reset_stdfd(t_exec_attr *ea)
 {
-	dup2(ea->stdfd[0], STDIN_FILENO);
-	dup2(ea->stdfd[1], STDOUT_FILENO);
-	dup2(ea->stdfd[2], STDERR_FILENO);
+	ft_xdup2(ea->stdfd[0], STDIN_FILENO);
+	ft_xdup2(ea->stdfd[1], STDOUT_FILENO);
+	ft_xdup2(ea->stdfd[2], STDERR_FILENO);
 }
 
 bool	open_files_out(t_cmd *cmd)
