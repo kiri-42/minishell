@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cmd_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/17 15:48:44 by tkirihar          #+#    #+#             */
+/*   Updated: 2022/03/17 15:48:45 by tkirihar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "command.h"
 
@@ -22,14 +33,4 @@ bool	is_dir(char *cmd_path)
 	if (dir)
 		return (true);
 	return (false);
-}
-
-bool	*malloc_is_unpermitted(size_t size)
-{
-	bool	*ret;
-
-	ret = (bool *)malloc(sizeof(bool) * size);
-	if (ret == NULL)
-		exit(EXIT_FAILURE);
-	return (ret);
 }

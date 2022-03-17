@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 16:53:46 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/16 17:30:30 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/17 15:47:11 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	no_pipe_process(t_exec_attr *ea)
 	t_cmd	*c;
 
 	c = get_cmd(ea);
-	ea->is_unpermitted = malloc_is_unpermitted(1);
+	ea->is_unpermitted = (bool *)ft_xmalloc(1);
 	if (check_redirect_file(c, ea))
 		return ;
 	if (c->cmd == NULL)

@@ -6,12 +6,11 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:28:11 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 15:28:12 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/17 15:44:48 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h"
-#include "errno.h"
 
 void	print_error_and_exit(char *cmd, int exits, char *err)
 {

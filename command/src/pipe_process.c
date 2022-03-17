@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:28:09 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 15:28:10 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/17 15:48:12 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	pipe_process(t_exec_attr *ea, int pipe_count)
 	pa.pipe_count = pipe_count;
 	malloc_pipe_fd(&pa);
 	malloc_cpid_array(&pa);
-	ea->is_unpermitted = malloc_is_unpermitted(pa.pipe_count + 1);
+	ea->is_unpermitted = (bool *)ft_xmalloc(pa.pipe_count + 1);
 	pa.cmd_i = 0;
 	tmp = ea->cmd_lst;
 	while (pa.cmd_i < pa.pipe_count + 1)

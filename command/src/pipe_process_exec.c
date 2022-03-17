@@ -6,12 +6,11 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:28:14 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 15:28:15 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/17 15:45:36 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h"
-#include "errno.h"
 
 static void	run_cmd(t_exec_attr *ea, t_pipe_attr *pa, char *cmd_path)
 {
