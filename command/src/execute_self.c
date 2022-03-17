@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execute_self.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/17 22:51:22 by tkirihar          #+#    #+#             */
+/*   Updated: 2022/03/17 22:51:40 by tkirihar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "../includes/command.h"
+
+#include "command.h"
 
 // 引数のコマンド名と実行時のコマンドが一致していたらtrue
-bool	is_(char *command, char *cmd)
+static bool	is_(char *command, char *cmd)
 {
 	if (is_same_str(cmd, command))
 		return (true);
