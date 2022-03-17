@@ -1,4 +1,3 @@
-
 #include "command.h"
 
 t_cmd	*get_cmd(t_exec_attr *ea)
@@ -23,9 +22,6 @@ char	*get_argv_one(t_cmd *cmd)
 		return (NULL);
 	}
 	if (cmd->args->next == NULL)
-	{
-		// ft_putstr_fd("no args", STDERR_FILENO);
 		return (NULL);
-	}
 	return (cmd->args->next->content);
 }
