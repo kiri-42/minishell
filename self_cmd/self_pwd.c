@@ -6,12 +6,14 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:31:22 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:31:24 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/18 17:24:08 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "self_cmd.h"
 
+/* Use ea->current_pwd if PWD is an empty string */
+// 後でbayaさんに聞く
 char	*x_getcwd(t_exec_attr *ea)
 {
 	char	*pathname;
@@ -21,7 +23,6 @@ char	*x_getcwd(t_exec_attr *ea)
 	if (lst == NULL)
 		return (NULL);
 	pathname = ft_kvsget_value(lst->content);
-	// PWDが空文字のときはea->current_pwdを使用する
 	if (ft_strlen(pathname) == 0)
 		return (NULL);
 	return (pathname);
