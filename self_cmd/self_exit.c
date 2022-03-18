@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:39 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:33:01 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/18 16:11:45 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,36 +43,49 @@ static char	*get_arg1(t_cmd *cmd)
 	return (ft_strtrim(arg1, " "));
 }
 
-int	exec_self_exit(t_cmd *cmd, bool is_pipe)
+static void	validate_arg1(t_cmd *cmd, long *arg1_num)
 {
-	unsigned int	exit_status;
-	int				argc;
-	char			*arg1;
-	long			arg1_num;
+	char	*arg1;
 
-	if (!is_pipe) // pipeのときは出力しないらしい
-		ft_putendl_fd("exit", STDERR_FILENO);
-	argc = ft_lstsize(cmd->args);
-	if (argc == 1)
-		exit(g_exit_status);
 	arg1 = get_arg1(cmd);
 	if (arg1 == NULL)
 		exit(EXIT_FAILURE);
-	if (!is_num(arg1) || !ft_atol(arg1, &arg1_num))
+	if (!is_num(arg1) || !ft_atol(arg1, arg1_num))
 	{
 		ft_put_arg_error("exit", arg1, "numeric argument required");
 		exit(255);
 	}
 	free(arg1);
+}
+
+static bool	is_two_or_more(int argc)
+{
 	if (argc > 2)
 	{
 		ft_put_cmd_error("exit", "too many arguments");
-		return (EXIT_FAILURE);
+		return (true);
 	}
+	return (false);
+}
+
+int	exec_self_exit(t_cmd *cmd, bool is_pipe)
+{
+	unsigned int	exit_status;
+	int				argc;
+	long			arg1_num;
+
+	if (!is_pipe)
+		ft_putendl_fd("exit", STDERR_FILENO);
+	argc = ft_lstsize(cmd->args);
+	if (argc == 1)
+		exit(g_exit_status);
+	validate_arg1(cmd, &arg1_num);
+	if (is_two_or_more(argc))
+		return (EXIT_FAILURE);
 	exit_status = arg1_num;
 	if (exit_status > 255)
 		exit(exit_status % 256);
 	else
 		exit(exit_status);
-	return (exit_status); // 無いとエラーになるので飾り
+	return (exit_status);
 }
