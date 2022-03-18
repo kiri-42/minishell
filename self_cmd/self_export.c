@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:27 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/19 01:19:01 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/19 01:25:56 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,6 @@ void	export_with_args(t_cmd *cmd, t_exec_attr *ea, bool *exit_stat)
 		{
 			*exit_stat = false;
 			print_error_msg_with_var(EXPORT, arg);
-			lst = lst->next;
-			continue ;
 		}
 		else
 		{
