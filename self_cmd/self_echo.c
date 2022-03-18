@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:17 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:32:20 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/18 17:16:21 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,73 @@
 #include "self_cmd.h"
 #include <stdbool.h>
 
-int	exec_self_echo(t_cmd *cmd, t_exec_attr *ea)
+// あとでbayaさんに聞く
+static int	get_n_index(char *str)
 {
-	t_list	*args;
-	char	*str;
-	int		i;
-	bool display_return ;
+	int	i;
 
-	args = cmd->args->next;
-	(void)ea;
-	display_return = false;
-	// TODO: pipeでつないだときへの対応、引数が2つの場合にも対応
-	while (args != NULL)
+	i = 1;
+	while (str[i])
 	{
-		str = args->content;
+		if (ft_strchr("n", str[i]) == NULL)
+			break ;
+		i++;
+	}
+	return (i);
+}
+
+static bool	search_n_opt(t_list **args)
+{
+	int		i;
+	char	*str;
+	bool	ret;
+
+	ret = false;
+	while (*args != NULL)
+	{
+		str = (*args)->content;
 		if (str == NULL || str[0] != '-')
 			break ;
-		i = 1;
-		while (str[i])
-		{
-			if (ft_strchr("n", str[i]) == NULL)
-				break;
-			i++;
-		}
+		i = get_n_index(str);
 		if (str[1] == '\0' || str[i] != '\0')
 			break ;
 		i = 1;
 		while (str[i] != '\0')
 		{
 			if (str[i] == 'n')
-				display_return = true;
+				ret = true;
 			i++;
 		}
-		args = args->next;
+		*args = (*args)->next;
 	}
-	while (args != NULL)
+	return (ret);
+}
+
+static void	print_content(t_list **args)
+{
+	char	*str;
+
+	while (*args != NULL)
 	{
-		str = args->content;
+		str = (*args)->content;
 		if (str == NULL)
 			break ;
-		args = args->next;
+		*args = (*args)->next;
 		ft_putstr_fd(str, STDOUT_FILENO);
-		if (args != NULL)
+		if (*args != NULL)
 			ft_putchar_fd(' ', STDOUT_FILENO);
 	}
+}
+
+int	exec_self_echo(t_cmd *cmd, t_exec_attr *ea)
+{
+	t_list	*args;
+	bool	display_return ;
+
+	args = cmd->args->next;
+	(void)ea;
+	display_return = search_n_opt(&args);
+	print_content(&args);
 	if (!display_return)
 		ft_putchar_fd('\n', STDOUT_FILENO);
 	return (0);
