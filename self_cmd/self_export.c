@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:27 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:32:30 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/19 01:19:01 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,13 @@ void	export_with_args(t_cmd *cmd, t_exec_attr *ea, bool *exit_stat)
 			if (is_invalid_name(arg))
 			{
 				print_error_msg_with_var(EXPORT, arg);
-				lst = lst->next;
 				*exit_stat = false;
-				continue ;
 			}
-			store_arg_in_export(ea, arg, NULL);
-			store_arg_in_env(ea, arg, NULL);
+			else
+			{
+				store_arg_in_export(ea, arg, NULL);
+				store_arg_in_env(ea, arg, NULL);
+			}
 		}
 		// 先頭ポインタが"="だったとき、keyが存在しないのでerrorとする
 		else if (ft_strchr(arg, '=') == arg)
