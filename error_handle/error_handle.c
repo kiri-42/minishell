@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:34:39 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:34:42 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/19 16:38:09 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	free_char_dptr(char **dptr)
 			free(dptr[i]);
 			i++;
 		}
-		free(dptr[i]); // 番兵をfreeする
+		// free(dptr[i]); // 番兵をfreeする
 		free(dptr);
 	}
 }

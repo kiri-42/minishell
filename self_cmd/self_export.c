@@ -6,21 +6,11 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:27 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/19 01:25:56 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/19 17:22:55 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "self_cmd.h"
-
-bool	is_sharp(char *arg)
-{
-	if (arg == NULL)
-		return (false);
-	// exportの第一引数が#から始まっている限り、なにが後ろにきたとしても、export(引数なし)と同じような実装になる。
-	if (*arg == '#')
-		return (true);
-	return (false);
-}
 
 int	exec_self_export(t_cmd *cmd, t_exec_attr *ea)
 {
@@ -38,10 +28,9 @@ int	exec_self_export(t_cmd *cmd, t_exec_attr *ea)
 	return (1);
 }
 
-// 新しく追加
+// まずadd_backでポインタの位置を確定した後、contentを入れ替える
 bool	addlst_sort_by_ascii(t_list **export_lst, char **arg)
 {
-	// まずadd_backでポインタの位置を確定した後、contentを入れ替える
 	bool	flag;
 
 	flag = ft_lstadd_back(export_lst, \
@@ -53,14 +42,27 @@ bool	addlst_sort_by_ascii(t_list **export_lst, char **arg)
 	return (true);
 }
 
-int	check_export_arg(char **arg)
+// 先頭ポインタが"="だったとき、keyが存在しないのでerrorとする
+static void	error_process(char *var, bool *exit_stat)
 {
-	// ちょっと全部は把握しきれていないが、KEYに_以外の記号がはいったらout
-	if (is_invalid_name(arg[KEY]))
-		return (INVALID_IDENTIFER);
-	if (arg[VALUE] == NULL)
-		return (NO_VALUE);
-	return (10);
+	*exit_stat = false;
+	print_error_msg_with_var(EXPORT, var);
+}
+
+void	store_env(int ret, t_exec_attr *ea, char **kv)
+{
+	if (ret == NO_VALUE)
+		kv[VALUE] = ft_strdup("");
+	if (!store_arg_in_env(ea, kv[KEY], kv[VALUE]))
+	{
+		perror("store_env");
+		exit(EXIT_FAILURE);
+	}
+	if (!store_arg_in_export(ea, kv[KEY], kv[VALUE]))
+	{
+		perror("store_env");
+		exit(EXIT_FAILURE);
+	}
 }
 
 void	export_with_args(t_cmd *cmd, t_exec_attr *ea, bool *exit_stat)
@@ -74,55 +76,19 @@ void	export_with_args(t_cmd *cmd, t_exec_attr *ea, bool *exit_stat)
 	while (lst != NULL)
 	{
 		arg = (char *)(lst->content);
-		// ft_splitでは引数が"a="の場合と"a"の判別がつけられない実装になっている
-		// そのため、strchrでまず引数に=があるか判定してから、各実装に入る
 		if (ft_strchr(arg, '=') == NULL)
-		{
-			if (is_invalid_name(arg))
-			{
-				print_error_msg_with_var(EXPORT, arg);
-				*exit_stat = false;
-			}
-			else
-			{
-				store_arg_in_export(ea, arg, NULL);
-				store_arg_in_env(ea, arg, NULL);
-			}
-		}
-		// 先頭ポインタが"="だったとき、keyが存在しないのでerrorとする
+			store_null_env(ea, arg, exit_stat);
 		else if (ft_strchr(arg, '=') == arg)
-		{
-			*exit_stat = false;
-			print_error_msg_with_var(EXPORT, arg);
-		}
+			error_process(arg, exit_stat);
 		else
 		{
 			kv = ft_separate(arg, '=');
-			if (kv == NULL)
-				abort_minishell(MALLOC_ERROR, ea);
 			ret = check_export_arg(kv);
 			if (ret == INVALID_IDENTIFER)
-			{
-				*exit_stat = false;
-				print_error_msg_with_var(EXPORT, kv[KEY]);
-			}
+				error_process(kv[KEY], exit_stat);
 			else
-			{
-				if (ret == NO_VALUE)
-				{
-					// valueがnullだけど=が存在する場合、valueには\0を入れる。
-					kv[VALUE] = ft_strdup("");
-					if (kv[VALUE] == NULL)
-						abort_minishell_with(MALLOC_ERROR, ea, kv);
-				}
-				if (!store_arg_in_env(ea, kv[KEY], kv[VALUE]))
-					abort_minishell_with(MALLOC_ERROR, ea, kv);
-				if (!store_arg_in_export(ea, kv[KEY], kv[VALUE]))
-					abort_minishell_with(MALLOC_ERROR, ea, kv);
-			}
-			free(kv[0]);
-			free(kv[1]);
-			free(kv);
+				store_env(ret, ea, kv);
+			free_char_dptr(kv); // abortするかもcheck it out
 		}
 		lst = lst->next;
 	}

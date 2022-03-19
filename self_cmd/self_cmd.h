@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:03 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:32:06 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/19 17:22:29 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ bool		addlst_sort_by_ascii(t_list **export_lst, char **arg);
 void		print_export_kvs(void *content);
 void		sort_listkey_by_ascii(t_list *export_lst);
 void		print_all_export_lst(t_exec_attr *ea);
+bool		is_sharp(char *arg);
+int			check_export_arg(char **arg);
+void		store_null_env(t_exec_attr *ea, char *arg, bool *exit_stat);
 
 // self_cmd_utils.c
 bool		is_invalid_name(char *name);
