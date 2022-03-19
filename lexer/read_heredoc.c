@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:15:09 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:15:10 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/19 15:30:50 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,18 +90,17 @@ bool
 {
 	pid_t	pid;
 
-	pid = fork();
-	if (pid < 0)
-	{
-		printf("fork error\n");
-		exit(EXIT_FAILURE);
-	}
-	else if (pid == 0)
+	pid = ft_xfork();
+	if (pid == 0)
 		divfunc2(lexer, env_list, has_quote, delimiter);
 	else
 	{
 		if (!divfunc3(pid))
+		{
+			delete_lexer(lexer);
+			free(delimiter);
 			return (false);
+		}
 	}
 	return (true);
 }
