@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:12:49 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:12:52 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:21:00 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	init_oldpwd(t_exec_attr *ea)
 	del_export_lst_by_key(ea->export_lst,"PWD", ea);
 	store_arg_in_export(ea, "OLDPWD", NULL);
 	store_arg_in_env(ea, "OLDPWD", NULL);
-	ea->current_pwd = getcwd(NULL, 0);
+	ea->current_pwd = getcwd(NULL, 0); //dev_nullを使わなくていいか確認する
 	store_arg_in_export(ea, "PWD", ea->current_pwd);
 	store_arg_in_env(ea, "PWD", ea->current_pwd);
 }
