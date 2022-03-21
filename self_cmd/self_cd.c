@@ -6,20 +6,27 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:31:45 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:31:48 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:41:31 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "self_cmd.h"
 
+char	*x_getcwd(t_exec_attr *ea)
+{
+	char	*ret;
+
+	redirect_dev_null(ea);
+	ret = getcwd(NULL, 0);
+	reset_stdfd(ea);
+	return (ret);
+}
+
 bool	is_current_dir_exist(t_exec_attr *ea)
 {
 	char	*pwd;
 
-	(void)ea;
-	redirect_dev_null(ea);
-	pwd = getcwd(NULL, 0);
-	reset_stdfd(ea);
+	pwd = x_getcwd(ea);
 	free(pwd);
 	if (pwd == NULL)
 		return (false);
@@ -32,19 +39,19 @@ void	create_virtual_path(char *path, t_exec_attr *ea)
 	char	*new_pwd;
 
 	pwd = ea->current_pwd;
-	redirect_dev_null(ea);
-	new_pwd = getcwd(NULL, 0);
-	reset_stdfd(ea);
+	new_pwd = x_getcwd(ea);
 	if (new_pwd == NULL)
 	{
 		new_pwd = create_new_pwd(pwd, path);
-		ft_putstr_fd("cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n", STDERR_FILENO);
+		ft_putstr_fd("cd: error retrieving current directory: \
+getcwd: cannot access parent directories: \
+No such file or directory\n", STDERR_FILENO);
 	}
 	update_all_environ(new_pwd, ea);
 	free(new_pwd);
 }
 
-char *remove_relative(char *path, t_exec_attr *ea)
+char	*remove_relative(char *path, t_exec_attr *ea)
 {
 	char	**split;
 	char	**new_split;
@@ -149,17 +156,23 @@ char *remove_relative(char *path, t_exec_attr *ea)
 	return (new_str);
 }
 
+void	finish_has_diff(char *cwd, char *pwd, char *path, char *pwd_del_dot)
+{
+	if (*path != '/')
+		free(pwd);
+	free(pwd_del_dot);
+	free(cwd);
+}
+
 bool	has_diff(char *path, t_exec_attr *ea)
 {
 	char		*cwd;
 	char		*pwd;
 	bool		flag;
 	char		*pwd_del_dot;
-	struct stat buf;
+	struct stat	buf;
 
-	redirect_dev_null(ea);
-	cwd = getcwd(NULL, 0);
-	reset_stdfd(ea);
+	cwd = x_getcwd(ea);
 	if (*path == '/')
 		pwd = path;
 	else
@@ -167,25 +180,41 @@ bool	has_diff(char *path, t_exec_attr *ea)
 	pwd_del_dot = remove_relative(pwd, ea);
 	if (lstat(pwd_del_dot, &buf) == -1)
 	{
-		if (*path != '/')
-			free(pwd);
-		free(pwd_del_dot);
-		free(cwd);
+		finish_has_diff(cwd, pwd, path, pwd_del_dot);
 		return (false);
 	}
 	flag = is_same_str(cwd, pwd_del_dot);
-	if (*path != '/')
-		free(pwd);
-	free(pwd_del_dot);
-	free(cwd);
+	finish_has_diff(cwd, pwd, path, pwd_del_dot);
 	return (!flag);
+}
+
+char	*get_new_pwd(t_exec_attr *ea, char *path)
+{
+	char	*new_pwd;
+	char	*tmp;
+
+	if (has_diff(path, ea))
+	{
+		tmp = create_new_pwd(ea->current_pwd, path);
+		new_pwd = remove_relative(tmp, ea);
+		free(tmp);
+	}
+	else
+	{
+		new_pwd = x_getcwd(ea);
+		if (new_pwd == NULL)
+		{
+			print_error(PWD, path);
+			return (NULL);
+		}
+	}
+	return (new_pwd);
 }
 
 int	x_chdir(char *arg, t_exec_attr *ea)
 {
 	char	*new_pwd;
 	char	*path;
-	char	*tmp;
 
 	if (chdir(arg) == -1)
 	{
@@ -198,30 +227,12 @@ int	x_chdir(char *arg, t_exec_attr *ea)
 		return (1);
 	}
 	if (is_end_of_slash(arg))
-	{
 		path = create_str_removed_end(arg);
-		if (path == NULL)
-			abort_minishell(MALLOC_ERROR, ea);
-	}
 	else
 		path = ft_strdup(arg);
-	if (has_diff(path, ea))
-	{
-		tmp = create_new_pwd(ea->current_pwd, path);
-		new_pwd = remove_relative(tmp, ea);
-		free(tmp);
-	}
-	else
-	{
-		redirect_dev_null(ea);
-		new_pwd = getcwd(NULL, 0);
-		reset_stdfd(ea);
-		if (new_pwd == NULL)
-		{
-			print_error(PWD, path);
-			return (1);
-		}
-	}
+	new_pwd = get_new_pwd(ea, path);
+	if (new_pwd == NULL)
+		return (1);
 	update_all_environ(new_pwd, ea);
 	free(path);
 	free(new_pwd);
