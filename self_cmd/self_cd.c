@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:31:45 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/21 16:41:31 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/22 15:25:20 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,63 +51,50 @@ No such file or directory\n", STDERR_FILENO);
 	free(new_pwd);
 }
 
-char	*remove_relative(char *path, t_exec_attr *ea)
+bool	set_new_split_len(char **split, long long *new_split_len)
 {
-	char	**split;
-	char	**new_split;
-	char	*new_str;
 	size_t	i;
-	size_t	new_str_len;
 	size_t	ddot_count;
 	size_t	dot_count;
-	size_t	blank_count;
-	long long	new_split_len;
+	size_t	tmp;
 
 	i = 0;
-	new_str_len = 0;
 	ddot_count = 0;
 	dot_count = 0;
-	blank_count = 0;
-	split = ft_split(path, '/');
 	while (split[i] != NULL)
 	{
-		if (is_same_str("", split[i]))
-		{
-			blank_count++;
-		}
 		if (is_same_str(".", split[i]))
-		{
 			dot_count++;
-		}
 		if (is_same_str("..", split[i]))
-		{
 			ddot_count++;
-		}
 		i++;
 	}
-	new_split_len = i - blank_count - dot_count - (ddot_count * 2) + 1;
-	if (new_split_len < 0)
+	tmp = i - dot_count - (ddot_count * 2) + 1;
+	if (tmp < 0)
 	{
-		new_str = ft_strdup("/");
 		free_char_dptr(split);
-		return (new_str);
+		return (false);
 	}
-	// ループの順番によっては..の分の要素数を確保しないといけない場合があるのでsizeを大きくする
-	new_split_len = i - blank_count - dot_count + 1;
-	new_split = (char **)malloc(sizeof(char *) * new_split_len);
-	if (new_split == NULL)
-		abort_minishell(MALLOC_ERROR, ea);
+	*new_split_len = i - dot_count + 1;
+	return (true);
+}
+
+
+/* If the path is ".." exists, the previous path is deleted. except for the first absolute path. */
+/* Free one previous new_split if there is ".." */
+/* Decrement j. However, if j is negative, stop. */
+char	**get_new_split(long long new_split_len, char **split, size_t *new_str_len)
+{
+	char	**new_split;
+	size_t	i;
+	size_t	j;
+
+	new_split = (char **)ft_xmalloc(sizeof(char *) * new_split_len);
 	i = 0;
-	size_t j = 0;
+	j = 0;
+	*new_str_len = 0;
 	while (split[i] != NULL)
 	{
-		// もしパスに..が存在する場合、前のパスを削除する
-		// ただし絶対パスの一番目を除く
-		if (is_same_str("", split[i]))
-		{
-			i++;
-			continue ;
-		}
 		if (is_same_str(".", split[i]))
 		{
 			i++;
@@ -115,9 +102,6 @@ char	*remove_relative(char *path, t_exec_attr *ea)
 		}
 		if (is_same_str("..", split[i]))
 		{
-			// ddotがあったら一個前のnew_splitをfreeする
-			// そのときjをデクリメントする
-			// ただしjがマイナスになる場合はやめる
 			if (j != 0)
 			{
 				free(new_split[j - 1]);
@@ -128,32 +112,49 @@ char	*remove_relative(char *path, t_exec_attr *ea)
 			continue ;
 		}
 		new_split[j] = ft_strjoin("/", split[i]);
-		new_str_len += ft_strlen(new_split[j]);
+		*new_str_len += ft_strlen(new_split[j]);
 		j++;
 		i++;
 	}
 	new_split[j] = NULL;
-	// ..の数だけ後ろからpathを削除していく
-	// もしnew_splitの値がすべて空文字 or ..だった場合、cdの向き先はhome(/)になる
-	i = 0;
-	new_str = (char *)calloc(sizeof(char), new_str_len + 1);
-	if (new_str == NULL)
-		abort_minishell(MALLOC_ERROR, ea);
+	return (new_split);
+}
+
+char	*get_new_path(char **new_split, size_t new_str_len)
+{
+	size_t	i;
+	char 	*new_path;
+
+	new_path = (char *)ft_calloc(sizeof(char), new_str_len + 1);
 	i = 0;
 	while (new_split[i] != NULL)
 	{
-		ft_strlcat(new_str, new_split[i], new_str_len + 1);
+		ft_strlcat(new_path, new_split[i], new_str_len + 1);
 		i++;
 	}
-	if (is_end_of_slash(new_str))
-	{
-		path = create_str_removed_end(new_str);
-		if (path == NULL)
-			abort_minishell(MALLOC_ERROR, ea);
-	}
+	return (new_path);
+}
+
+char	*remove_relative(char *path)
+{
+	char	**split;
+	char	**new_split;
+	char	*new_path;
+	// size_t	i;
+	size_t	new_str_len;
+	long long	new_split_len;
+
+	new_str_len = 0;
+	split = ft_split(path, '/');
+	if (!set_new_split_len(split, &new_split_len))
+		return (ft_strdup("/"));
+	new_split = get_new_split(new_split_len, split, &new_str_len);
+	new_path = get_new_path(new_split, new_str_len);
+	if (is_end_of_slash(new_path))
+		path = create_str_removed_end(new_path);
 	free_char_dptr(split);
 	free_char_dptr(new_split);
-	return (new_str);
+	return (new_path);
 }
 
 void	finish_has_diff(char *cwd, char *pwd, char *path, char *pwd_del_dot)
@@ -177,7 +178,7 @@ bool	has_diff(char *path, t_exec_attr *ea)
 		pwd = path;
 	else
 		pwd = create_new_pwd(ea->current_pwd, path);
-	pwd_del_dot = remove_relative(pwd, ea);
+	pwd_del_dot = remove_relative(pwd);
 	if (lstat(pwd_del_dot, &buf) == -1)
 	{
 		finish_has_diff(cwd, pwd, path, pwd_del_dot);
@@ -196,7 +197,7 @@ char	*get_new_pwd(t_exec_attr *ea, char *path)
 	if (has_diff(path, ea))
 	{
 		tmp = create_new_pwd(ea->current_pwd, path);
-		new_pwd = remove_relative(tmp, ea);
+		new_pwd = remove_relative(tmp);
 		free(tmp);
 	}
 	else
