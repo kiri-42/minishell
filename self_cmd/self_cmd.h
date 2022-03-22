@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:03 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/19 17:22:29 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/22 16:09:43 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,25 @@ int			exec_self_pwd(t_cmd *cmd, t_exec_attr *ea);
 
 // self_cd.c
 int			exec_self_cd(t_cmd *cmd, t_exec_attr *ea);
+
+// self_cd_utils.c
+char		*get_pwd(t_list *pwdlst, t_exec_attr *ea);
+void		update_all_environ(char *new_pwd, t_exec_attr *ea);
 char		*create_new_pwd(char *pwd, char *path);
 bool		is_symlink(char *path, t_exec_attr *ea);
 bool		is_end_of_slash(char *path);
-char		*create_str_removed_end(char *path);
 
-// self_cd_utils.c
-void		update_all_environ(char *new_pwd, t_exec_attr *ea);
+// self_cd_utils2.c
+char		*x_getcwd(t_exec_attr *ea);
+bool		is_current_dir_exist(t_exec_attr *ea);
+void		create_virtual_path(char *path, t_exec_attr *ea);
+bool		set_new_split_len(char **split, long long *new_split_len);
+bool		search_dots(size_t *i, size_t *j, char **new_split, char **split);
+
+
+// self_cd_utils3.c
+char		*remove_relative(char *path);
+char		*create_str_removed_end(char *path);
 
 // self_echo.c
 int			exec_self_echo(t_cmd *cmd, t_exec_attr *ea);
