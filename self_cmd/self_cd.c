@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:31:45 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/22 15:25:20 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/22 15:40:04 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,26 @@ bool	set_new_split_len(char **split, long long *new_split_len)
 	return (true);
 }
 
+bool	search_dots(size_t *i, size_t *j, char **new_split, char **split)
+{
+	if (is_same_str(".", split[*i]))
+	{
+		(*i)++;
+		return (true);
+	}
+	if (is_same_str("..", split[*i]))
+	{
+		if ((*j) != 0)
+		{
+			free(new_split[*j - 1]);
+			new_split[*j - 1] = NULL;
+			(*j)--;
+		}
+		(*i)++;
+		return (true);
+	}
+	return (false);
+}
 
 /* If the path is ".." exists, the previous path is deleted. except for the first absolute path. */
 /* Free one previous new_split if there is ".." */
@@ -92,25 +112,10 @@ char	**get_new_split(long long new_split_len, char **split, size_t *new_str_len)
 	new_split = (char **)ft_xmalloc(sizeof(char *) * new_split_len);
 	i = 0;
 	j = 0;
-	*new_str_len = 0;
 	while (split[i] != NULL)
 	{
-		if (is_same_str(".", split[i]))
-		{
-			i++;
+		if (search_dots(&i, &j, new_split, split))
 			continue ;
-		}
-		if (is_same_str("..", split[i]))
-		{
-			if (j != 0)
-			{
-				free(new_split[j - 1]);
-				new_split[j - 1] = NULL;
-				j--;
-			}
-			i++;
-			continue ;
-		}
 		new_split[j] = ft_strjoin("/", split[i]);
 		*new_str_len += ft_strlen(new_split[j]);
 		j++;
@@ -123,7 +128,7 @@ char	**get_new_split(long long new_split_len, char **split, size_t *new_str_len)
 char	*get_new_path(char **new_split, size_t new_str_len)
 {
 	size_t	i;
-	char 	*new_path;
+	char	*new_path;
 
 	new_path = (char *)ft_calloc(sizeof(char), new_str_len + 1);
 	i = 0;
@@ -137,11 +142,10 @@ char	*get_new_path(char **new_split, size_t new_str_len)
 
 char	*remove_relative(char *path)
 {
-	char	**split;
-	char	**new_split;
-	char	*new_path;
-	// size_t	i;
-	size_t	new_str_len;
+	char		**split;
+	char		**new_split;
+	char		*new_path;
+	size_t		new_str_len;
 	long long	new_split_len;
 
 	new_str_len = 0;
