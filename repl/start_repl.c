@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:42:04 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:42:05 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/23 15:57:34 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ void	start_repl(void)
 		if (command_process(ea))
 			continue ;
 		ft_lstclear(&ea->cmd_lst, delete_pipe);
-		// mem_mgt_check();
 	}
 	free_exec_attr(ea);
 	clear_history();
+	exit(g_exit_status);
 }
