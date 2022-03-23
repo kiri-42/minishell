@@ -6,23 +6,23 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:31:50 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:31:53 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:12:21 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "self_cmd.h"
 
+/* If the numbers are in head, return. */
+/* Only numbers/letters/underscores are acceptable */
 bool	is_invalid_name(char *name)
 {
 	size_t	i;
 
 	i = 0;
-	// 数字は頭にあったら弾く
 	if (ft_isdigit(name[i]))
 		return (true);
 	while (name[i] != '\0')
 	{
-		// 数字/文字/アンダースコアのみ許容する
 		if (!(ft_isalnum(name[i]) || name[i] == '_'))
 			return (true);
 		i++;
