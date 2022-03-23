@@ -6,13 +6,12 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:22 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:32:25 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:08:44 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "self_cmd.h"
 
-// TODO:引数あるバージョンは未対応
 int	exec_self_env(t_cmd *cmd, t_exec_attr *ea)
 {
 	(void)cmd;
