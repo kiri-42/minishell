@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:27 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/19 17:22:55 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:10:59 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	exec_self_export(t_cmd *cmd, t_exec_attr *ea)
 	return (1);
 }
 
-// まずadd_backでポインタの位置を確定した後、contentを入れ替える
 bool	addlst_sort_by_ascii(t_list **export_lst, char **arg)
 {
 	bool	flag;
@@ -42,7 +41,6 @@ bool	addlst_sort_by_ascii(t_list **export_lst, char **arg)
 	return (true);
 }
 
-// 先頭ポインタが"="だったとき、keyが存在しないのでerrorとする
 static void	error_process(char *var, bool *exit_stat)
 {
 	*exit_stat = false;
@@ -88,7 +86,7 @@ void	export_with_args(t_cmd *cmd, t_exec_attr *ea, bool *exit_stat)
 				error_process(kv[KEY], exit_stat);
 			else
 				store_env(ret, ea, kv);
-			free_char_dptr(kv); // abortするかもcheck it out
+			free_char_dptr(kv);
 		}
 		lst = lst->next;
 	}

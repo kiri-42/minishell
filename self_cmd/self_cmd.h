@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:03 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/22 16:09:43 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:09:41 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ bool		is_current_dir_exist(t_exec_attr *ea);
 void		create_virtual_path(char *path, t_exec_attr *ea);
 bool		set_new_split_len(char **split, long long *new_split_len);
 bool		search_dots(size_t *i, size_t *j, char **new_split, char **split);
-
 
 // self_cd_utils3.c
 char		*remove_relative(char *path);
