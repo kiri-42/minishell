@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:03 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/23 16:09:41 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:16:17 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "environ.h"
 # include "execute_struct.h"
 # include "common.h"
+# include "command.h"
 
 # define CD "cd"
 # define ECHO "echo"

@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:13:18 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:13:23 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:04:29 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,22 @@ char		*concat_path_and_cmd(char *path, char *command);
 void		create_cmd_from_arg(int argc, const char **argv, t_exec_attr *ea);
 char		*find_path(char *cmd_name, t_exec_attr *ea, size_t cmd_i);
 
+// create_cmd_2.c
+bool		is_dollar(char *arg);
+char		*convert_env_var(t_exec_attr *ea, char *arg);
+char		*concat_path_and_cmd(char *path, char *command);
+bool		can_exec(char *cmd_path);
+bool		should_break(t_exec_attr *ea, char *new_cmd, size_t cmd_i);
+
+// create_cmd_3.c
+bool		init_readdir(DIR **dirp, char ***path);
 
 // init.c
 void		init(t_exec_attr **ea);
 void		init_new(t_exec_attr **ea);
 
 // convert_lst_to_argv.c
-char		**convert_lst_to_argv(t_list *args);
+char		**convert_lst_to_vector(t_list *args);
 
 // no_pipe_process.c
 void		no_pipe_process(t_exec_attr *ea);
@@ -84,19 +93,19 @@ void		execute_ext_cmd(t_cmd *c, t_exec_attr *ea);
 bool		is_path(char *cmd);
 
 // no_pipe_process_2.c
-bool	is_path(char *cmd);
-void	print_error_and_set_es(char *cmd, int exits, char *err);
-bool	check_redirect_file(t_cmd *c, t_exec_attr *ea);
+bool		is_path(char *cmd);
+void		print_error_and_set_es(char *cmd, int exits, char *err);
+bool		check_redirect_file(t_cmd *c, t_exec_attr *ea);
 
 // pipe_process.c
-void	pipe_process(t_exec_attr *ea, int pipe_count);
+void		pipe_process(t_exec_attr *ea, int pipe_count);
 
 // pipe_process_2.c
-void	print_error_and_exit(char *cmd, int exits, char *err);
-void	make_pipe(t_pipe_attr *pa);
+void		print_error_and_exit(char *cmd, int exits, char *err);
+void		make_pipe(t_pipe_attr *pa);
 
 // pipe_process_exec.c
-void	exec_cmd(t_exec_attr *ea, t_pipe_attr *pa);
+void		exec_cmd(t_exec_attr *ea, t_pipe_attr *pa);
 
 // free_pipe_attr.c
 void		free_pipe_attr(t_pipe_attr *pa);
@@ -109,5 +118,27 @@ bool		*malloc_is_unpermitted(size_t size);
 
 // execve_error.c
 void		execve_error(int cp_errno, char *cmd_path);
+
+// exec_attribute_utils.c
+t_cmd		*get_cmd(t_exec_attr *ea);
+char		*get_cmd_name(t_list *cmd);
+char		*get_argv_one(t_cmd *cmd);
+
+// redirect_process.c
+void		redirect_dev_null(t_exec_attr *ea);
+bool		open_files(t_cmd *cmd, t_exec_attr *ea);
+bool		open_files_in_pipe(t_cmd *cmd, t_exec_attr *ea);
+bool		open_files_in(t_cmd *cmd);
+bool		open_files_out(t_cmd *cmd);
+
+// redirect_process_2.c
+void		reset_stdfd(t_exec_attr *ea);
+bool		has_redirect_file(t_cmd *cmd);
+void		redirect_dev_null(t_exec_attr *ea);
+void		change_fd(t_list *files, bool is_in);
+void		redirect(t_cmd *cmd, t_exec_attr *ea);
+
+// redirect_process_3.c
+bool		init_readdir(DIR **dirp, char ***path);
 
 #endif

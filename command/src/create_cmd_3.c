@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_lst_to_argv.c                              :+:      :+:    :+:   */
+/*   create_cmd_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 23:12:55 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/23 16:22:43 by tkirihar         ###   ########.fr       */
+/*   Created: 2022/03/24 15:48:47 by tkirihar          #+#    #+#             */
+/*   Updated: 2022/03/24 15:50:12 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h"
 
-char	**convert_lst_to_vector(t_list *args)
+bool	init_readdir(DIR **dirp, char ***path)
 {
-	char	**cmdv;
-	size_t	cmdc;
-	size_t	i;
-	t_list	*current_arg;
-
-	cmdc = ft_lstsize(args);
-	cmdv = (char **)ft_xmalloc(sizeof(char *) * (cmdc + NULL_CHAR));
-	i = 0;
-	current_arg = args;
-	while (current_arg != NULL)
+	*dirp = opendir(**path);
+	if (*dirp == NULL)
 	{
-		cmdv[i] = ft_strdup(current_arg->content);
-		i++;
-		current_arg = current_arg->next;
+		(*path)++;
+		return (false);
 	}
-	cmdv[i] = NULL;
-	return (cmdv);
+	return (true);
 }

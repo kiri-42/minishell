@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 16:53:46 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 15:47:11 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:24:12 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	execute_ext_cmd(t_cmd *c, t_exec_attr *ea)
 	char	**cmdv;
 	char	*cmd_path;
 
-	cmdv = convert_lst_to_argv(c->args);
+	cmdv = convert_lst_to_vector(c->args);
 	if (is_path(c->cmd))
 		cmd_path = ft_strdup(c->cmd);
 	else

@@ -6,11 +6,12 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:00:06 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/22 16:04:17 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:15:59 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "self_cmd.h"
+
 
 char	*get_pwd(t_list *pwdlst, t_exec_attr *ea)
 {

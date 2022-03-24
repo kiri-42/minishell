@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:28:14 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 16:58:22 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/23 16:22:43 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	run_cmd(t_exec_attr *ea, t_pipe_attr *pa, char *cmd_path)
 	char	**environ;
 
 	environ = convert_envlst_to_array(ea);
-	cmdv = convert_lst_to_argv(pa->current_cmd->args);
+	cmdv = convert_lst_to_vector(pa->current_cmd->args);
 	if (is_self_cmd(pa->current_cmd->cmd))
 	{
 		execute_self_cmd(pa->current_cmd, ea, PIPE);

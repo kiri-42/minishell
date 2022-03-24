@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:13:26 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:13:27 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:01:12 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,6 @@ typedef struct s_pipe_attr
 	int		pipe_count;
 	int		*cpid_array;
 }	t_pipe_attr;
-
-// exec_attribute_utils.c
-t_cmd		*get_cmd(t_exec_attr *ea);
-char		*get_cmd_name(t_list *cmd);
-char		*get_argv_one(t_cmd *cmd);
-
-// redirect_process.c
-void		redirect(t_cmd *cmd, t_exec_attr *ea);
-bool		has_redirect_file(t_cmd *cmd);
-void		redirect_dev_null(t_exec_attr *ea);
-void		reset_stdfd(t_exec_attr *ea);
-bool		open_files(t_cmd *cmd, t_exec_attr *ea);
-bool		open_files_in_pipe(t_cmd *cmd, t_exec_attr *ea);
 
 #endif
 

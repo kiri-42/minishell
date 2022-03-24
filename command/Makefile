@@ -7,8 +7,11 @@ SRCNAME	:=	execute_builtin.c \
 			execute_self.c \
 			execute.c \
 			redirect_process.c \
+			redirect_process_2.c \
 			init.c \
 			create_cmd.c \
+			create_cmd_2.c \
+			create_cmd_3.c \
 			convert_lst_to_argv.c \
 			no_pipe_process.c \
 			no_pipe_process_2.c \
