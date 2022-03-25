@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:15:09 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/19 15:30:50 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 16:27:23 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	replace_quoted_str(char **buffer, t_list *env_list)
 	*buffer = tmp;
 }
 
-void
-	divfunc2(t_lexer *lexer, t_list *env_list, bool has_quote, char *delimiter)
+void	read_heredoc_in_child_process(t_lexer *lexer, t_list *env_list,
+										bool has_quote, char *delimiter)
 {
 	char	*line;
 	char	*buffer;
@@ -57,7 +57,7 @@ void
 	exit(EXIT_SUCCESS);
 }
 
-bool	divfunc3(pid_t	pid)
+bool	is_heredoc_succeeded(pid_t	pid)
 {
 	pid_t	wait_ret;
 	int		wstatus;
@@ -85,17 +85,17 @@ bool	divfunc3(pid_t	pid)
 	return (true);
 }
 
-bool
-	divfunc(t_lexer *lexer, t_list *env_list, bool has_quote, char *delimiter)
+bool	read_heredoc_process(t_lexer *lexer, t_list *env_list, bool has_quote,
+							char *delimiter)
 {
 	pid_t	pid;
 
 	pid = ft_xfork();
 	if (pid == 0)
-		divfunc2(lexer, env_list, has_quote, delimiter);
+		read_heredoc_in_child_process(lexer, env_list, has_quote, delimiter);
 	else
 	{
-		if (!divfunc3(pid))
+		if (!is_heredoc_succeeded(pid))
 		{
 			delete_lexer(lexer);
 			free(delimiter);
@@ -124,7 +124,7 @@ bool	read_heredoc(t_lexer *lexer, t_list *env_list)
 		delimiter = tmp;
 	}
 	register_heredocs(lexer, delimiter);
-	if (!divfunc(lexer, env_list, has_quote, delimiter))
+	if (!read_heredoc_process(lexer, env_list, has_quote, delimiter))
 		return (false);
 	free(delimiter);
 	return (true);

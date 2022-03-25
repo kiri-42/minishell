@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:14:34 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:14:35 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 16:13:20 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ void	write_tmpfile(char *tmpfile, char *buf)
 	int	ret;
 
 	if (access("/tmp", F_OK) != 0)
-		mkdir("/tmp", 0777);
+	{
+		perror("you should create tmp folder");
+		exit(EXIT_FAILURE);
+	}
 	fd = open(tmpfile, O_WRONLY | O_CREAT | O_TRUNC, 0600);
 	if (fd == -1)
 		exit(EXIT_FAILURE);
@@ -50,7 +53,10 @@ void	create_tmpfile(char *tmpfile)
 	int	fd;
 
 	if (access("/tmp", F_OK) != 0)
-		mkdir("/tmp", 0777);
+	{
+		perror("you should create tmp folder");
+		exit(EXIT_FAILURE);
+	}
 	fd = open(tmpfile, O_WRONLY | O_CREAT | O_TRUNC, 0600);
 	if (fd == -1)
 		exit(EXIT_FAILURE);
