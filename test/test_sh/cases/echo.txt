@@ -2,6 +2,7 @@ echo
 echo a
 echo hello world
 echo -n
+echo -n hello
 echo -nk hello
 echo -nnnnnnnnnnk hello
 echo -nknknknk hello
