@@ -6,10 +6,9 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:20:13 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:20:14 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:24:11 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "libft.h"
 #include "stdio.h"

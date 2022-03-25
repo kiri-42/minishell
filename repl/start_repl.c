@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:42:04 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/24 15:20:08 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:27:36 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ char	*do_readline(void)
 {
 	char	*line;
 
-	// print_exit_status();
 	set_signal_handler_during_readline();
 	line = readline(">> ");
 	set_signal_handler_during_command();

@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:34:39 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/19 16:38:09 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:19:54 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,27 +52,8 @@ void	free_char_dptr(char **dptr)
 			free(dptr[i]);
 			i++;
 		}
-		// free(dptr[i]); // 番兵をfreeする
 		free(dptr);
 	}
-}
-
-void	abort_minishell(char *msg, t_exec_attr *ea)
-{
-	ft_putstr_fd(msg, STDERR_FILENO);
-	if (ea != NULL)
-		free_exec_attr(ea);
-	exit(EXIT_FAILURE);
-}
-
-void	abort_minishell_with(char *msg, t_exec_attr *ea, char **split)
-{
-	if (split != NULL)
-		free_char_dptr(split);
-	perror(msg);
-	if (ea != NULL)
-		free_exec_attr(ea);
-	exit(EXIT_FAILURE);
 }
 
 void	free_all_kvs(t_kvs *kvs)

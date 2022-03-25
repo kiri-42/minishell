@@ -13,7 +13,6 @@ ENVIRON_DIR			=	environ
 ERROR_HANDLE_DIR	=	error_handle
 SELF_CMD_DIR		=	self_cmd
 SIGNAL_DIR			=	signal
-LIBMEM_MGT_DIR		=	libmem_mgt
 
 
 HEADERS		=	. \
@@ -24,7 +23,6 @@ HEADERS		=	. \
 				$(COMMAND_DIR)/includes \
 				$(ENVIRON_DIR) \
 				$(SIGNAL_DIR)/includes \
-				$(LIBMEM_MGT_DIR) \
 
 LIBFT				=	$(LIBFT_DIR)/libft.a
 LIB_LEXER			=	$(LEXER_DIR)/liblexer.a
@@ -35,7 +33,6 @@ LIB_ENVIRON			=	$(ENVIRON_DIR)/libenvion.a
 LIB_ERROR_HANDLE	=	$(ERROR_HANDLE_DIR)/liberrorhandle.a
 LIB_SELF_CMD		=	$(SELF_CMD_DIR)/libselfcmd.a
 LIB_SIGNAL			=	$(SIGNAL_DIR)/libsignal.a
-LIBMEM_MGT			=	$(LIBMEM_MGT_DIR)/libmem_mgt.a
 
 INCLUDES	=	$(addprefix -I, $(HEADERS))
 
@@ -63,8 +60,8 @@ GREEN		=	'\033[32m'
 YELLOW		=	'\033[33m'
 RESET		=	'\033[0m'
 
-$(NAME): $(LIBFT)  $(LIB_LEXER) $(LIB_REPL) $(LIB_COMMAND) $(LIB_ENVIRON) $(LIB_PARSER) $(LIB_ERROR_HANDLE) $(LIB_SELF_CMD) $(LIB_SIGNAL) $(LIBMEM_MGT) $(OBJS)
-	@$(CC) $(CFLAGS) $(INCLUDES)  -o $(NAME) $(OBJS) $(LIB_REPL) $(LIB_COMMAND) $(LIB_PARSER) $(LIB_ERROR_HANDLE) $(LIB_SELF_CMD) $(LIB_ENVIRON) $(LIB_LEXER) $(LIB_SIGNAL) $(LIBMEM_MGT) $(LIBFT) $(RLFLAGS)
+$(NAME): $(LIBFT)  $(LIB_LEXER) $(LIB_REPL) $(LIB_COMMAND) $(LIB_ENVIRON) $(LIB_PARSER) $(LIB_ERROR_HANDLE) $(LIB_SELF_CMD) $(LIB_SIGNAL) $(OBJS)
+	@$(CC) $(CFLAGS) $(INCLUDES)  -o $(NAME) $(OBJS) $(LIB_REPL) $(LIB_COMMAND) $(LIB_PARSER) $(LIB_ERROR_HANDLE) $(LIB_SELF_CMD) $(LIB_ENVIRON) $(LIB_LEXER) $(LIB_SIGNAL) $(LIBFT) $(RLFLAGS)
 	@echo $(YELLOW)"@@@@@ $(NAME) compiling done @@@@@"$(RESET)
 
 $(LIBFT): dummy
@@ -94,9 +91,6 @@ $(LIB_SELF_CMD): dummy
 $(LIB_SIGNAL): dummy
 	@make -C $(SIGNAL_DIR)
 
-$(LIBMEM_MGT): dummy
-	@make -C $(LIBMEM_MGT_DIR)
-
 .PHONY: dummy
 dummy:
 
@@ -114,7 +108,6 @@ clean:
 	@make -C $(ERROR_HANDLE_DIR) clean
 	@make -C $(SELF_CMD_DIR) clean
 	@make -C $(SIGNAL_DIR) clean
-	@make -C $(LIBMEM_MGT_DIR) clean
 	@$(RM) $(OBJS)
 	@echo $(RED)"REMOVE OBJECT FILES $(OBJS)"$(RESET)
 
@@ -128,7 +121,6 @@ fclean:	clean
 	@make -C $(ERROR_HANDLE_DIR) fclean
 	@make -C $(SELF_CMD_DIR) fclean
 	@make -C $(SIGNAL_DIR) fclean
-	@make -C $(LIBMEM_MGT_DIR) fclean
 	@$(RM) $(NAME)
 	@echo $(RED)"REMOVE $(NAME)"$(RESET)
 	@$(RM) ./tester

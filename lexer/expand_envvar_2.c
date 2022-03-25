@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:15:30 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:15:31 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:34:55 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@ bool	is_word_char(char c)
 	return (ft_isalnum(c) || c == '_');
 }
 
+/* return argv[i] when $0 ~ $9 */
 char	*get_word(char *str)
 {
 	size_t	i;
 
 	i = 0;
 	if (!(ft_isalpha(str[i]) || str[i] == '_'))
-		exit(EXIT_FAILURE); // return argv[i] when $0 ~ $9
+		exit(EXIT_FAILURE);
 	while (is_word_char(str[i]))
 		i++;
 	return (ft_substr(str, 0, i));

@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:28:11 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 16:55:30 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:23:52 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,12 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 bool	ft_lstdel(t_list *lst, t_list *target);
 t_list	*ft_my_lstpop_front(t_list **lst);
-void 	ft_lstiter_with_var(t_list *lst, void (*f)(void *, void *), void *var);
+void	ft_lstiter_with_var(t_list *lst, void (*f)(void *, void *), void *var);
 
 // x function
 void	*ft_xmalloc(size_t size);
 pid_t	ft_xfork(void);
 int		ft_xdup2(int oldfd, int newfd);
 void	ft_xclose(int fd);
-
 
 #endif

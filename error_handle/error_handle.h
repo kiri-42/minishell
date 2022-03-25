@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:34:45 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/24 17:16:51 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:17:04 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@
 // error_handling.c
 void		free_exec_attr(t_exec_attr *ea);
 void		free_char_dptr(char **split);
-void		abort_minishell(char *msg, t_exec_attr *ea);
-void		abort_minishell_with(char *msg, t_exec_attr *ea, char **split);
 void		free_lst(t_list *lst);
 void		free_all_kvs(t_kvs *kvs);
+
+// error_handle_2.c
+void		abort_minishell(char *msg, t_exec_attr *ea);
+void		abort_minishell_with(char *msg, t_exec_attr *ea, char **split);
 
 // debug.c
 // void		print_command_debug(t_exec_attr *ea);

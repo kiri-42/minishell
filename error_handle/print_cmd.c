@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:34:58 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/25 15:19:38 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:24:26 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	print_lists(char *name, t_list *list)
 	}
 	printf("\n");
 }
-
 
 void	print_cmd(const t_cmd *cmd)
 {

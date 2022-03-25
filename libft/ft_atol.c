@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:23:29 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:23:30 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:31:57 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	read_sign(int *sign, size_t *i, char c)
 	}
 }
 
-bool 	ft_atol(const char *nptr, long *num)
+bool	ft_atol(const char *nptr, long *num)
 {
 	size_t		i;
 	int			sign;

@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:16:15 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:16:16 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:34:23 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_lexer_product	*analyze_lex(const char *line, t_list *env);
 // helper
 t_token			*token_dup(t_token *token);
 char			*replace_string(char *str, const char *from, const char *to);
-char			*expand_single_envvar(char *str, const char *from,
+char			*expand_single_envvar(char *str, const char *from, \
 				const char *to, size_t *i);
 char			*expand_envvar_str(const char *input, void *env);
 void			expand_envvar(t_list *lst, t_list *env_lst);

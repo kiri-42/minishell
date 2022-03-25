@@ -12,6 +12,7 @@ INCLUDES	=	$(addprefix -I, $(HEADERS))
 
 SRCS = 	error_handle.c \
 		print_cmd.c \
+		error_handle_2.c \
 
 OBJS = ${SRCS:.c=.o}
 

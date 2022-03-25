@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:21:17 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:21:21 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:27:34 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,3 @@ char	*ft_strcut_back(char *str, char c)
 		i++;
 	return (ft_substr(str, 0, i));
 }
-

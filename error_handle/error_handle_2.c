@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   error_handle_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 23:24:08 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/25 15:26:11 by tkirihar         ###   ########.fr       */
+/*   Created: 2022/03/17 23:34:39 by tkirihar          #+#    #+#             */
+/*   Updated: 2022/03/25 15:20:11 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "error_handle.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+void	abort_minishell(char *msg, t_exec_attr *ea)
 {
-	if (f == NULL)
-		return ;
-	while (lst != NULL)
-	{
-		f(lst->content);
-		lst = lst->next;
-	}
+	ft_putstr_fd(msg, STDERR_FILENO);
+	if (ea != NULL)
+		free_exec_attr(ea);
+	exit(EXIT_FAILURE);
+}
+
+void	abort_minishell_with(char *msg, t_exec_attr *ea, char **split)
+{
+	if (split != NULL)
+		free_char_dptr(split);
+	perror(msg);
+	if (ea != NULL)
+		free_exec_attr(ea);
+	exit(EXIT_FAILURE);
 }

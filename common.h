@@ -6,16 +6,14 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:42:57 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:42:58 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:33:17 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMON_H
 # define COMMON_H
 
-#include <stdio.h>
-#include "libmem_mgt/mem_mgt.h"
-// #include "libmem_mgt/replace_mem_mgt.h"
+# include <stdio.h>
 
 typedef enum e_stdio {
 	STDIN = 0,

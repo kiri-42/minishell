@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:18:44 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/19 17:14:14 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:25:45 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,18 @@ static char	*ft_strcdup(const char *str, char c)
 	return (ft_substr(str, 0, len));
 }
 
-// 最初にでてきたseparate文字で文字列を分解する
+/* Decompose the string with the first separate character. */
 char	**ft_separate(char *str, char separator)
 {
-	char *sep_ptr;
-	char **array;
+	char	*sep_ptr;
+	char	**array;
 
 	if (str == NULL)
 		return (NULL);
 	sep_ptr = ft_strchr(str, separator);
 	if (sep_ptr == NULL)
 		return (NULL);
-	// 文字数 + NULL
 	array = (char **)ft_xmalloc(sizeof(char *) * (2 + 1));
-	// separator文字の後が'\0'の場合、array[1]はNULLとする。
 	if (*(sep_ptr + 1) == '\0')
 	{
 		array[0] = ft_strcdup(str, separator);
@@ -45,7 +43,6 @@ char	**ft_separate(char *str, char separator)
 		return (array);
 	}
 	array[0] = ft_strcdup(str, separator);
-	//separatorの次の文字から'\0'までの文字列をstrdupする
 	array[1] = ft_strdup(++sep_ptr);
 	array[2] = NULL;
 	return (array);
