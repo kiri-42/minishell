@@ -6,10 +6,9 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:13:26 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/24 16:01:12 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:14:07 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef EXECUTE_STRUCT_H
 # define EXECUTE_STRUCT_H
@@ -18,15 +17,6 @@
 # include "parser/parser.h"
 
 typedef void(*	t_content_f)(void *);
-
-// typedef struct s_exec_attr
-// {
-// 	char *const	*command;
-// 	char		*infile;
-// 	char		*outfile;
-// 	t_list		*env_lst;
-// 	t_list		*export_lst;
-// }	t_exec_attr;
 
 typedef struct s_exec_attr
 {
@@ -54,4 +44,3 @@ typedef struct s_pipe_attr
 }	t_pipe_attr;
 
 #endif
-
