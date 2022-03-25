@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:30:01 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/25 17:41:14 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 20:21:38 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "common.h"
+# include "libft.h"
 
 // set_signal_handler_during_command.c
 

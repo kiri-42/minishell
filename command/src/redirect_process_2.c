@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:56:42 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/24 16:26:35 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 20:13:12 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	redirect_dev_null(t_exec_attr *ea)
 void	change_fd(t_list *files, bool is_in)
 {
 	t_file	*f;
-	int		i;
+	size_t	i;
 	t_list	*tmp;
 
 	i = 0;

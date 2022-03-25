@@ -6,7 +6,7 @@
 #    By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/11 23:29:42 by tkirihar          #+#    #+#              #
-#    Updated: 2022/03/24 17:14:54 by tkirihar         ###   ########.fr        #
+#    Updated: 2022/03/25 20:18:52 by tkirihar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ UNAME =			$(shell uname)
 
 HEADERS =		.. \
 				./includes/ \
+				../libft \
 
 ifeq ($(UNAME),Darwin)
 	HEADERS	+=	$(shell brew --prefix readline)/include

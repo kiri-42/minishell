@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 16:53:46 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/23 16:24:12 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 20:00:23 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,6 @@ void	execute_ext_cmd(t_cmd *c, t_exec_attr *ea)
 	}
 	fork_process(cmd_path, ea, c, cmdv);
 }
-
-/* 135(if (has_redirect_file(c))):fileのopenの処理はコマンドに関わらず行う */
-/* 144(if (c->cmd == NULL)):TODO: コマンドが存在しない時、ここでsegvする */
 
 void	no_pipe_process(t_exec_attr *ea)
 {
