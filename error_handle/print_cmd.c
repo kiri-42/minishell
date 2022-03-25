@@ -6,16 +6,16 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:34:58 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:35:02 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:19:38 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error_handle.h"
 
-void print_files(char *name, t_list *list)
+void	print_files(char *name, t_list *list)
 {
-	t_list *tmp;
-	t_file *file;
+	t_list	*tmp;
+	t_file	*file;
 
 	tmp = list;
 	printf("%s", name);
@@ -36,10 +36,10 @@ void print_files(char *name, t_list *list)
 	printf("\n");
 }
 
-void print_lists(char *name, t_list *list)
+void	print_lists(char *name, t_list *list)
 {
-	t_list *tmp;
-	char *str;
+	t_list	*tmp;
+	char	*str;
 
 	tmp = list;
 	printf("%s", name);
@@ -57,7 +57,7 @@ void print_lists(char *name, t_list *list)
 }
 
 
-void print_cmd(const t_cmd *cmd)
+void	print_cmd(const t_cmd *cmd)
 {
 	printf("\tcmd: %s\n", cmd->cmd);
 	print_lists("\targs: ", cmd->args);
@@ -65,12 +65,12 @@ void print_cmd(const t_cmd *cmd)
 	print_files("\tfilenames_out: ", cmd->filenames_out);
 }
 
-void print_cmds(t_list *cmd)
+void	print_cmds(t_list *cmd)
 {
-	const t_cmd *tmp;
+	const t_cmd	*tmp;
 
 	if (cmd == NULL)
-		return;
+		return ;
 	printf("pipe_cmd:\n");
 	tmp = cmd->content;
 	print_cmd(tmp);
