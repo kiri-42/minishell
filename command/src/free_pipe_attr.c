@@ -6,10 +6,9 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:13:02 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:13:03 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:26:16 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "command.h"
 
@@ -28,7 +27,6 @@ static void	free_pipe_fd(t_pipe_attr *pa)
 
 void	free_pipe_attr(t_pipe_attr *pa)
 {
-	// ここでpa->current_cmdもfreeすべきかも
 	free_pipe_fd(pa);
 	free(pa->cpid_array);
 }

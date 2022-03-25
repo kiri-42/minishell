@@ -6,39 +6,25 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:12:49 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/21 16:21:00 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:27:59 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h"
 
-// void	init(t_exec_attr **ea)
-// {
-// 	extern char	**environ;
-
-// 	*ea = (t_exec_attr *)malloc(sizeof(t_exec_attr));
-// 	if (*ea == NULL)
-// 		abort_minishell(MALLOC_ERROR, *ea);
-// 	(*ea)->infile = NULL;
-// 	(*ea)->outfile = NULL;
-// 	store_allenv_in_envlst(*ea, environ);
-// 	store_allenv_in_export(*ea, environ);
-// }
-
 void	init_oldpwd(t_exec_attr *ea)
 {
 	del_env_lst_by_key(ea->env_lst, "OLDPWD", ea);
-	del_export_lst_by_key(ea->export_lst,"OLDPWD", ea);
+	del_export_lst_by_key(ea->export_lst, "OLDPWD", ea);
 	del_env_lst_by_key(ea->env_lst, "PWD", ea);
-	del_export_lst_by_key(ea->export_lst,"PWD", ea);
+	del_export_lst_by_key(ea->export_lst, "PWD", ea);
 	store_arg_in_export(ea, "OLDPWD", NULL);
 	store_arg_in_env(ea, "OLDPWD", NULL);
-	ea->current_pwd = getcwd(NULL, 0); //dev_nullを使わなくていいか確認する
+	ea->current_pwd = getcwd(NULL, 0);
 	store_arg_in_export(ea, "PWD", ea->current_pwd);
 	store_arg_in_env(ea, "PWD", ea->current_pwd);
 }
 
-// どこに置けばいいかわかりません by桐原
 void	store_stdfd(t_exec_attr *ea)
 {
 	ea->stdfd[0] = dup(STDIN_FILENO);

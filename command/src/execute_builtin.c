@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:12:04 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:12:08 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:33:06 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,14 @@ char	*create_env_line_non_value(char *key, bool is_end)
 	return (line);
 }
 
+char	*get_env_array(void *content, bool is_end)
+{
+	if (ft_kvsget_value(content) == NULL)
+		return (create_env_line_non_value(ft_kvsget_key(content), is_end));
+	else
+		return (create_environ_line(\
+			ft_kvsget_key(content), ft_kvsget_value(content), is_end));
+}
 
 char	**convert_envlst_to_array(t_exec_attr *ea)
 {
@@ -64,37 +72,15 @@ char	**convert_envlst_to_array(t_exec_attr *ea)
 	while (i < env_lst_size)
 	{
 		if (i == env_lst_size - 1)
-		{
-			if (ft_kvsget_value(tmp->content) == NULL)
-			{
-				array[i] = create_env_line_non_value(ft_kvsget_key(tmp->content), true);
-			}
-			else
-			{
-				array[i] = create_environ_line(\
-					ft_kvsget_key(tmp->content), ft_kvsget_value(tmp->content), true);
-			}
-		}
+			array[i] = get_env_array(tmp->content, true);
 		else
-		{
-			if (ft_kvsget_value(tmp->content) == NULL)
-			{
-				array[i] = create_env_line_non_value(ft_kvsget_key(tmp->content), false);
-			}
-			else
-			{
-				array[i] = create_environ_line(\
-					ft_kvsget_key(tmp->content), ft_kvsget_value(tmp->content), false);
-			}
-		}
+			array[i] = get_env_array(tmp->content, false);
 		tmp = tmp->next;
 		i++;
 	}
 	array[i] = NULL;
-	// print_array(array);
 	return (array);
 }
-
 
 char	*create_environ_line(char *key, char *value, bool is_end)
 {

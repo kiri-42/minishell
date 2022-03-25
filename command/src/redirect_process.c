@@ -6,10 +6,9 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:11:27 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/24 16:04:39 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:27:14 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/command.h"
 

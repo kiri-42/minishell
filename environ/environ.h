@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:41:44 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:41:48 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:24:25 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,11 @@ bool		is_same_str(char *a, char *b);
 t_list		*get_list_by_min_ascii_key(t_list *lst);
 void		del_env_lst_by_key(t_list *lst, char *key, t_exec_attr *ea);
 void		del_export_lst_by_key(t_list *lst, char *key, t_exec_attr *ea);
-bool		swap_lst_content(t_list *a, t_list *b);
 t_list		*get_lst_by_key(t_list *lst, char *key);
 void		sort_listkey_by_ascii(t_list *lst);
 
-// lst_utils.c
+// lst_utils_2.c
+bool		swap_lst_content(t_list *a, t_list *b);
 bool		update_value(t_list *lst, char *key, char *new_v, t_exec_attr *ea);
-
 
 #endif

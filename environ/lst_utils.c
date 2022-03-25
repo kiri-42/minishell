@@ -6,31 +6,15 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:41:50 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:41:52 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:20:44 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "environ.h"
 
-bool	swap_lst_content(t_list *a, t_list *b)
-{
-	void	*tmp;
-
-	if (a == NULL || b == NULL)
-		return (false);
-	if (a->content == b->content)
-	{
-		return (true);
-	}
-	tmp = a->content;
-	a->content = b->content;
-	b->content = tmp;
-	return (true);
-}
-
+// 大文字アルファベット → _ → 小文字のアルファベットに並び替える
 void	sort_listkey_by_ascii(t_list *lst)
 {
-	// 大文字アルファベット → _ → 小文字のアルファベットに並び替える
 	t_list	*min;
 
 	if (lst == NULL)
@@ -57,6 +41,7 @@ t_list	*get_lst_by_key(t_list *lst, char *key)
 	return (NULL);
 }
 
+// lvalueの方が大きいので、tmpをrvalueにchange
 t_list	*get_list_by_min_ascii_key(t_list *lst)
 {
 	t_list	*tmp;
@@ -68,7 +53,6 @@ t_list	*get_list_by_min_ascii_key(t_list *lst)
 	{
 		min_key = ft_kvsget_key(tmp->content);
 		next_key = ft_kvsget_key(lst->next->content);
-		// lvalueの方が大きいので、tmpをrvalueにchange
 		if (is_lvalue_bigger_ascii(min_key, next_key))
 			tmp = lst->next;
 		lst = lst->next;
@@ -76,7 +60,7 @@ t_list	*get_list_by_min_ascii_key(t_list *lst)
 	return (tmp);
 }
 
-void		del_env_lst_by_key(t_list *lst, char *key, t_exec_attr *ea)
+void	del_env_lst_by_key(t_list *lst, char *key, t_exec_attr *ea)
 {
 	t_list	*target;
 
@@ -93,7 +77,7 @@ void		del_env_lst_by_key(t_list *lst, char *key, t_exec_attr *ea)
 	ft_lstdel(lst, target);
 }
 
-void		del_export_lst_by_key(t_list *lst, char *key, t_exec_attr *ea)
+void	del_export_lst_by_key(t_list *lst, char *key, t_exec_attr *ea)
 {
 	t_list	*target;
 

@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:41:39 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:41:42 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:28:37 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ char	*create_export_value(char *value)
 		value_len = ft_strlen(value);
 	new_value_len = (value_len + DQUOTE + NULL_CHAR);
 	new_value = (char *)ft_calloc(sizeof(char), new_value_len);
-	if (new_value == NULL)
-		return (NULL);
 	ft_strlcat(new_value, "\"", new_value_len);
 	if (value != NULL)
 		ft_strlcat(new_value, value, new_value_len);
@@ -39,6 +37,7 @@ void	store_allenv_in_export(t_exec_attr *ea, char **environ)
 	char		**split;
 	t_list		*export_lst;
 	char		*value;
+
 	export_lst = NULL;
 	i = 0;
 	while (environ[i] != NULL)
@@ -60,20 +59,16 @@ void	store_allenv_in_export(t_exec_attr *ea, char **environ)
 	ea->export_lst = export_lst;
 }
 
+// Update the value if it exists.
 bool	store_arg_in_export(t_exec_attr *ea, char *key, char *value)
 {
 	char	*export_value;
 	t_list	*target;
 
 	if (value != NULL)
-	{
 		export_value = create_export_value(value);
-		if (export_value == NULL)
-			abort_minishell(MALLOC_ERROR, ea);
-	}
 	else
 		export_value = NULL;
-	// もし値が存在するなら更新する
 	target = get_lst_by_key(ea->export_lst, key);
 	if (target != NULL)
 	{

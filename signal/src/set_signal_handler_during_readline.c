@@ -6,10 +6,9 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:29:27 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:29:28 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:12:53 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "sigaction.h"
 
@@ -19,10 +18,9 @@ void	handle_sigint_during_readline(int sig)
 	(void)sig;
 	g_exit_status = 1;
 	printf("\n");
-	// print_exit_status_in_signal();
-	rl_replace_line("", 0); // プロンプトのバッファをクリア
-	rl_on_new_line();       // プロンプトを次の行に移動したいことを伝える？
-	rl_redisplay();         // プロンプトを再描画
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
 }
 
 static void	set_sigint_handler_during_readline(void)
@@ -35,7 +33,7 @@ static void	set_sigint_handler_during_readline(void)
 	sigaction(SIGINT, &act, NULL);
 }
 
-static void set_sigquit_handler_during_readline(void)
+static void	set_sigquit_handler_during_readline(void)
 {
 	signal(SIGQUIT, SIG_IGN);
 }

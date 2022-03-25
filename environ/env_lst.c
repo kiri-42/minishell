@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:41:55 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:41:58 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:06:20 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,16 @@ void	store_allenv_in_envlst(t_exec_attr *ea, char **environ)
 	while (environ[i] != NULL)
 	{
 		split = ft_split(environ[i], '=');
-		if (split == NULL)
-			abort_minishell(MALLOC_ERROR, ea);
 		if (split[VALUE] == NULL)
 		{
-			// valueがnullのときはsplit[VALUE]に値を入れるとreallocが必要なのでtmpを用意
 			tmp = ft_strdup("");
-			if (!ft_lstadd_back(&env_lst, ft_lstnew(ft_kvsnew(split[KEY], tmp))))
-				abort_minishell_with(MALLOC_ERROR, ea, split);
+			ft_lstadd_back(&env_lst, ft_lstnew(ft_kvsnew(split[KEY], tmp)));
 			free(tmp);
 		}
 		else
 		{
-			if (!ft_lstadd_back(&env_lst, \
-			ft_lstnew(ft_kvsnew(split[KEY], split[VALUE]))))
-				abort_minishell_with(MALLOC_ERROR, ea, split);
-
+			ft_lstadd_back(&env_lst, \
+			ft_lstnew(ft_kvsnew(split[KEY], split[VALUE])));
 		}
 		i++;
 		free_char_dptr(split);

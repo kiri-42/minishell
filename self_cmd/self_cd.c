@@ -6,12 +6,11 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:31:45 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/24 16:21:42 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:25:44 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "self_cmd.h"
-#include "command.h"
 
 void	finish_has_diff(char *cwd, char *pwd, char *path, char *pwd_del_dot)
 {

@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:34:45 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:34:49 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:16:51 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void		free_lst(t_list *lst);
 void		free_all_kvs(t_kvs *kvs);
 
 // debug.c
-void		print_command_debug(t_exec_attr *ea);
-void		print_array(char **array);
+// void		print_command_debug(t_exec_attr *ea);
+// void		print_array(char **array);
 
 // print_cmd.c
 void		print_files(char *name, t_list *list);

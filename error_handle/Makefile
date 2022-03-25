@@ -11,7 +11,6 @@ HEADERS		=	. \
 INCLUDES	=	$(addprefix -I, $(HEADERS))
 
 SRCS = 	error_handle.c \
-		debug.c \
 		print_cmd.c \
 
 OBJS = ${SRCS:.c=.o}

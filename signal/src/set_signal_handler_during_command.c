@@ -6,15 +6,13 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:29:19 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:29:20 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:48:06 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "sigaction.h"
 
 /* SIGINT */
-
 static void	handle_sigint_during_command(int sig)
 {
 	printf("\n");
@@ -32,7 +30,6 @@ static void	set_sigint_handler_during_command(void)
 }
 
 /* SIGQUIT */
-
 static void	handle_sigquit_during_command(int sig)
 {
 	printf("Quit: 3\n");

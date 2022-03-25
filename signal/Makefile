@@ -6,15 +6,14 @@
 #    By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/11 23:29:42 by tkirihar          #+#    #+#              #
-#    Updated: 2022/02/17 23:17:45 by tkirihar         ###   ########.fr        #
+#    Updated: 2022/03/24 17:14:54 by tkirihar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = 			libsignal.a
 
 SRCDIR = 		./src/
-SRCNAME = 		sigaction.c \
-				set_signal_handler_during_command.c \
+SRCNAME = 		set_signal_handler_during_command.c \
 				set_signal_handler_during_readline.c \
 				set_signal_handler_during_heredoc.c \
 				reset_signal_handler.c \
