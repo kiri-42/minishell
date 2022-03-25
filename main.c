@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:42:51 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/25 15:53:58 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 16:41:07 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,5 @@ int	main(void)
 {
 	set_signal_handler_during_command();
 	start_repl();
+	return (0);
 }
-
-// __attribute__((destructor))
-// static void destructor() {
-//     system("leaks -q minishell");
-// }
