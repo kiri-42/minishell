@@ -2,6 +2,7 @@ NAME := libft.a
 CC := gcc
 HEADERS		=	../includes \
 			../ \
+			../libft \
 
 INCLUDES	=	$(addprefix -I, $(HEADERS))
 

@@ -6,11 +6,12 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:29:19 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/25 16:46:36 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:42:25 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sigaction.h"
+#include "../../libft/libft.h"
 
 /* SIGINT */
 static void	handle_sigint_during_command(int sig)
