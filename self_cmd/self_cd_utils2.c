@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:02:13 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/22 16:10:29 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/26 15:43:29 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ bool	set_new_split_len(char **split, long long *new_split_len)
 	size_t	i;
 	size_t	ddot_count;
 	size_t	dot_count;
-	size_t	tmp;
 
 	i = 0;
 	ddot_count = 0;
@@ -69,8 +68,7 @@ bool	set_new_split_len(char **split, long long *new_split_len)
 			ddot_count++;
 		i++;
 	}
-	tmp = i - dot_count - (ddot_count * 2) + 1;
-	if (tmp < 0)
+	if (i + 1 < dot_count + (ddot_count * 2))
 	{
 		free_char_dptr(split);
 		return (false);
