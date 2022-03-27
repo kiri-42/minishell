@@ -6,7 +6,7 @@
 #    By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/11 23:29:42 by tkirihar          #+#    #+#              #
-#    Updated: 2022/03/25 20:18:52 by tkirihar         ###   ########.fr        #
+#    Updated: 2022/03/27 17:16:20 by tkirihar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRCDIR = 		./src/
 SRCNAME = 		set_signal_handler_during_command.c \
 				set_signal_handler_during_readline.c \
 				set_signal_handler_during_heredoc.c \
+				set_signal_handler_during_wait.c \
 				reset_signal_handler.c \
 
 SRCS = 			$(addprefix $(SRCDIR), $(SRCNAME))

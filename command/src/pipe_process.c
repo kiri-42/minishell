@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:28:09 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 15:48:12 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/27 18:37:08 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,13 @@
 
 static void	malloc_pipe_fd(t_pipe_attr *pa)
 {
-	int	i;
+	size_t	i;
 
-	pa->pipe_fd = (int **)malloc(sizeof(int *) * pa->pipe_count);
-	if (pa->pipe_fd == NULL)
-	{
-		printf("malloc error\n");
-		exit(EXIT_FAILURE);
-	}
+	pa->pipe_fd = (int **)ft_xmalloc(sizeof(int *) * pa->pipe_count);
 	i = 0;
-	while (i < pa->pipe_count)
+	while (i < (size_t)pa->pipe_count)
 	{
-		pa->pipe_fd[i] = (int *)malloc(sizeof(int) * 2);
-		if (pa->pipe_fd[i] == NULL)
-		{
-			printf("malloc error\n");
-			exit(EXIT_FAILURE);
-		}
+		pa->pipe_fd[i] = (int *)ft_xmalloc(sizeof(int) * 2);
 		i++;
 	}
 	return ;
@@ -47,33 +37,38 @@ static void	malloc_cpid_array(t_pipe_attr *pa)
 	}
 }
 
+static int	signal_process(int sig)
+{
+	if (sig == SIGINT)
+	{
+		ft_putstr_fd("\n", STDERR_FILENO);
+	}
+	else if (sig == SIGQUIT)
+	{
+		ft_putendl_fd("Quit: 3", STDERR_FILENO);
+	}
+	return (sig + 128);
+}
+
 static void	wait_process(t_pipe_attr *pa)
 {
 	int		status;
-	int		i;
+	size_t	i;
 	pid_t	pid;
-	bool	is_EINTR;
 
+	set_signal_handler_during_wait();
 	i = 0;
-	while (i < pa->pipe_count + 1)
+	while (i < (size_t)pa->pipe_count + 1)
 	{
-		is_EINTR = false;
-		while (true)
-		{
-			pid = waitpid(pa->cpid_array[i], &status, 0);
-			if (pid > 0)
-				break ;
-			if (errno == EINTR)
-			{
-				is_EINTR = true;
-				continue ;
-			}
+		pid = waitpid(pa->cpid_array[i], &status, 0);
+		if (pid == -1)
 			exit(EXIT_FAILURE);
-		}
-		if (!is_EINTR)
-			g_exit_status = WEXITSTATUS(status);
 		i++;
 	}
+	if (WIFSIGNALED(status))
+		g_exit_status = signal_process(WTERMSIG(status));
+	else
+		g_exit_status = WEXITSTATUS(status);
 }
 
 void	pipe_process(t_exec_attr *ea, int pipe_count)

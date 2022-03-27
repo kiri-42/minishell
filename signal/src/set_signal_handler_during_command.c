@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:29:19 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/25 20:15:55 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/27 18:36:12 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /* SIGINT */
 static void	handle_sigint_during_command(int sig)
 {
-	ft_putstr_fd("\n", STDERR);
+	ft_putstr_fd("\n", STDERR_FILENO);
 	g_exit_status = 128 + sig;
 }
 
@@ -33,7 +33,7 @@ static void	set_sigint_handler_during_command(void)
 /* SIGQUIT */
 static void	handle_sigquit_during_command(int sig)
 {
-	ft_putstr_fd("Quit: 3\n", STDERR);
+	ft_putstr_fd("Quit: 3\n", STDERR_FILENO);
 	g_exit_status = 128 + sig;
 }
 

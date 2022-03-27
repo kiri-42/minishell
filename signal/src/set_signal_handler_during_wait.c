@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   common.h                                           :+:      :+:    :+:   */
+/*   set_signal_handler_durring_wait.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 23:42:57 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/27 18:21:53 by tkirihar         ###   ########.fr       */
+/*   Created: 2022/03/27 16:52:13 by tkirihar          #+#    #+#             */
+/*   Updated: 2022/03/27 17:09:36 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMON_H
-# define COMMON_H
+#include "sigaction.h"
 
-# include <stdio.h>
-
-typedef enum e_stdio
+void	set_signal_handler_during_wait(void)
 {
-	STDIN = 0,
-	STDOUT = 1,
-	STDERR = 2
-}						t_stdio;
-
-extern int	g_exit_status;
-
-#endif
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
+}

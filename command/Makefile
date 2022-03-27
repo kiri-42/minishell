@@ -37,8 +37,6 @@ RM		:= rm -rf
 LDFLAGS := -Llib/ft_printf -Llib/gnl -Llib/libft -Llib/ft_list
 LIBS 	:= -lftprintf -lgnl -lft -llst
 
-# LIBMEM_MGT			=	../libmem_mgt/libmem_mgt.a
-
 HEADERS	:=	. \
 			../ \
 			./includes/ \
@@ -46,6 +44,7 @@ HEADERS	:=	. \
 			../environ/ \
 			../error_handle/ \
 			../self_cmd/ \
+			../signal/includes/ \
 
 INCLUDES	=	$(addprefix -I, $(HEADERS))
 
