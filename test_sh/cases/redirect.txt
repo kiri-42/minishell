@@ -1,0 +1,44 @@
+> file
+< file
+> file | cat < no_such_file
+< file | cat < no_such_file
+ls | > file
+ls | < file
+ls | < file | pwd
+ls | > file | pwd
+ls | < file | pwd < file_2
+ls | < file | pwd > file_2
+echo hello > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+echo hello >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+ls > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+ls >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+ls no_such_file > out1.txt > out2.txt > out3.txt > err1.txt > err2.txt > err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+ls no_such_file >> out1.txt >> out2.txt >> out3.txt >> err1.txt >> err2.txt >> err3.txt\n cat out1.txt out2.txt out3.txt err1.txt err2.txt err3.txt
+cat < file < file < file
+cat < out1.txt <  out2.txt
+echo a > out\n echo b >> out\n echo c >> out\n echo d >> out\n cat out
+echo a > out\n echo b >> out\n echo c >> out\n echo d > out\n cat out
+unset NO_ENV\n echo a > $NO_ENV | echo b
+gcc rb.c \n ./a.out > file1 \n cat file1
+echo a > f\n echo b >> f\n cat f f f >> ff\n cat ff ff >> f\n cat f
+ls>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f>f\ncat f
+ls>a>b>c>d>e>f>g>h>i>j>k>l>m>n>o>p>q>r>s>t>u>v>w>x>y>z>A>B>C>D>E>F>G>H>I>J>K>L>M>N>O>P>Q>R>S>T>U>V>W>X>Y>Z>aa>ab>ac>ad>ae>af>ag>ah>ai>aj>ak>al>am>an>ao>ap>aq>ar>as>at>au>av>aw>ax>ay>az>aA>aB>aC>aD>aE>aF>aG>aH>aI>aJ>aK>aL>aM>aN>aO>aP>aQ>aR>aS>aT>aU>aV\nls
+unset NO_SUCH_ENV\necho > $NO_SUCH_ENV
+unset NO_SUCH_ENV\necho < $NO_SUCH_ENV
+unset NO_SUCH_ENV\ncat < "file1"$NO_SUCH_ENV
+unset NO_SUCH_ENV\ncat < $NO_SUCH_ENV"file1"
+export TEST="  test"\necho > $TEST"file1"
+export TEST="  test"\necho > "file1"$TEST
+export TEST="test  "\necho > "file1"$TEST
+export TEST="test  "\necho > $TEST"file1"
+export TEST="  test  "\necho > $TEST
+export TEST="  test  "\necho > a$TEST
+export TEST="  test  "\necho > $TEST"a"
+cat << HOGE\nhoge\nHOGE
+cat << "HOGE"\nhoge\nHOGE
+cat << ""H"OGE"\nhoge\nHOGE
+cat << ""\nhoge\n\n
+cat << $HOME\nhoge\n$HOME
+cat << hoge\n$HOME\nhoge
+cat << "h"oge\n$HOME\nhoge
+cat << ""hoge\n$HOME\nhoge
