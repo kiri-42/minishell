@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:28:14 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/23 16:22:43 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/28 19:27:50 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	run_cmd(t_exec_attr *ea, t_pipe_attr *pa, char *cmd_path)
 	{
 		execute_self_cmd(pa->current_cmd, ea, PIPE);
 		free(cmd_path);
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
 	else
 	{
@@ -85,7 +85,6 @@ static void	set_pipe_fd(t_pipe_attr *pa)
 	}
 }
 
-// TODO:構造体がexec単位でわけられているので、eaを渡したくない
 void	exec_cmd(t_exec_attr *ea, t_pipe_attr *pa)
 {
 	int		pid;
