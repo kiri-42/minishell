@@ -6,12 +6,13 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:28:09 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/27 18:37:08 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/28 15:19:16 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "command.h"
 #include "errno.h"
+#include "sigaction.h"
 
 static void	malloc_pipe_fd(t_pipe_attr *pa)
 {

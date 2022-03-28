@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:13:18 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/27 17:07:47 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/28 15:25:02 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 # include "self_cmd.h"
 # include "error_handle.h"
 # include "common.h"
-# include "sigaction.h"
 
 # define MY_COMMAND_NUM 4
 # define CMD_NAME 0
