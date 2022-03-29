@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 17:00:07 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 17:00:08 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/29 16:29:28 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,12 @@ bool	check_redirect_file(t_cmd *c, t_exec_attr *ea)
 		}
 	}
 	return (false);
+}
+
+void	set_exit_status(t_cmd *c)
+{
+	if (has_redirect_file(c))
+		g_exit_status = EXIT_SUCCESS;
+	else
+		g_exit_status = EXIT_FAILURE;
 }

@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 16:53:46 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/25 20:00:23 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/29 16:29:23 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	no_pipe_process(t_exec_attr *ea)
 		return ;
 	if (c->cmd == NULL)
 	{
+		set_exit_status(c);
 		free(ea->is_unpermitted);
 		return ;
 	}
