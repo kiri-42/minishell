@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 22:51:22 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/30 15:32:49 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:37:06 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	execute_self_cmd(t_cmd	*c, t_exec_attr *ea, bool is_pipe)
 {
 	if (c->cmd == NULL && has_redirect_file(c))
 		g_exit_status = exec_redirect_process(c, ea);
-	if (is_(CD, c->cmd))
+	else if (is_(CD, c->cmd))
 		g_exit_status = exec_self_cd(c, ea);
 	else if (is_(EXPORT, c->cmd))
 		g_exit_status = exec_self_export(c, ea);
