@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:13:18 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/28 15:25:02 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/29 16:35:04 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ bool		is_path(char *cmd);
 bool		is_path(char *cmd);
 void		print_error_and_set_es(char *cmd, int exits, char *err);
 bool		check_redirect_file(t_cmd *c, t_exec_attr *ea);
+void		set_exit_status(t_cmd *c);
 
 // pipe_process.c
 void		pipe_process(t_exec_attr *ea, int pipe_count);

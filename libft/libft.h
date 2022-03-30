@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:28:11 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/25 15:23:52 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:23:54 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,6 @@ void	*ft_xmalloc(size_t size);
 pid_t	ft_xfork(void);
 int		ft_xdup2(int oldfd, int newfd);
 void	ft_xclose(int fd);
+ssize_t	ft_xread(int fd, void *buf, size_t count);
 
 #endif

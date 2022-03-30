@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   x_read.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 23:11:48 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/29 15:41:51 by tkirihar         ###   ########.fr       */
+/*   Created: 2022/03/30 15:20:27 by tkirihar          #+#    #+#             */
+/*   Updated: 2022/03/30 15:23:15 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "command.h"
+#include "libft.h"
 
-void	execute_cmd(t_exec_attr *ea)
+ssize_t	ft_xread(int fd, void *buf, size_t count)
 {
-	int	pipe_count;
+	ssize_t	ret;
 
-	if (ea->cmd_lst == NULL)
-		return ;
-	pipe_count = ft_lstsize(ea->cmd_lst) - 1;
-	if (pipe_count == 0)
+	ret = read(fd, buf, count);
+	if (ret == -1)
 	{
-		no_pipe_process(ea);
+		perror("read");
+		exit(EXIT_FAILURE);
 	}
-	else
-	{
-		pipe_process(ea, pipe_count);
-	}
-	return ;
+	return (ret);
 }
