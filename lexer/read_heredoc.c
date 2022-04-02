@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:15:09 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/25 16:27:23 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/02 23:50:00 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	read_heredoc_in_child_process(t_lexer *lexer, t_list *env_list,
 	buffer = NULL;
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_IGN);
-	line = readline("");
+	line = readline("> ");
 	while (line != NULL)
 	{
 		if (ft_strncmp(line, delimiter, ft_strlen(line)) == 0
@@ -49,7 +49,7 @@ void	read_heredoc_in_child_process(t_lexer *lexer, t_list *env_list,
 			break ;
 		}
 		join_line_to_buffer(&buffer, &line);
-		line = readline("");
+		line = readline("> ");
 	}
 	if (!has_quote)
 		replace_quoted_str(&buffer, env_list);
