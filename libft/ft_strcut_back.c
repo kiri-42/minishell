@@ -12,7 +12,6 @@
 
 #include "libft.h"
 
-// 後ろから特定の文字を探し、存在した場合その文字を含めたそれ以降の文字をcutする
 char	*ft_strcut_back(char *str, char c)
 {
 	char	*position;

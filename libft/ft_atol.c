@@ -51,12 +51,3 @@ bool	ft_atol(const char *nptr, long *num)
 	*num *= sign;
 	return (true);
 }
-
-// int main()
-// {
-// 	long	exit_status;
-// 	bool	 flag;
-// 	flag = ft_atol("-922337", &exit_status);
-// 	printf("%d\n", flag);
-// 	printf("%ld\n", exit_status);
-// }

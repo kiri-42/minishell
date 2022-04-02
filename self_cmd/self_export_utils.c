@@ -31,7 +31,6 @@ void	print_export_kvs(void *content)
 		printf("declare -x %s=%s\n", kvs->key, kvs->value);
 }
 
-// exportの第一引数が#から始まっている限り、なにが後ろにきたとしても、export(引数なし)と同じような実装になる。
 bool	is_sharp(char *arg)
 {
 	if (arg == NULL)
@@ -41,7 +40,6 @@ bool	is_sharp(char *arg)
 	return (false);
 }
 
-//KEYに_以外の記号がはいったらout
 int	check_export_arg(char **arg)
 {
 	if (is_invalid_name(arg[KEY]))
@@ -51,8 +49,6 @@ int	check_export_arg(char **arg)
 	return (10);
 }
 
-// ft_splitでは引数が"a="の場合と"a"の判別がつけられない実装になっている
-// そのため、strchrでまず引数に=があるか判定してから、各実装に入る
 void	store_null_env(t_exec_attr *ea, char *arg, bool *exit_stat)
 {
 	if (is_invalid_name(arg))

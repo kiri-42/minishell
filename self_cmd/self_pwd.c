@@ -13,7 +13,6 @@
 #include "self_cmd.h"
 
 /* Use ea->current_pwd if PWD is an empty string */
-// 後でbayaさんに聞く
 static char	*get_pathname(t_exec_attr *ea)
 {
 	char	*pathname;

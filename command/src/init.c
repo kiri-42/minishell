@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:12:49 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/24 16:27:59 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:10:32 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	init_new(t_exec_attr **ea)
 {
 	extern char	**environ;
 
-	*ea = (t_exec_attr *)malloc(sizeof(t_exec_attr));
+	*ea = (t_exec_attr *)ft_calloc(sizeof(t_exec_attr), 1);
 	if (*ea == NULL)
 		abort_minishell(MALLOC_ERROR, *ea);
 	store_allenv_in_envlst(*ea, environ);

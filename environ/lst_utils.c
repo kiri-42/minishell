@@ -12,7 +12,6 @@
 
 #include "environ.h"
 
-// 大文字アルファベット → _ → 小文字のアルファベットに並び替える
 void	sort_listkey_by_ascii(t_list *lst)
 {
 	t_list	*min;
@@ -41,7 +40,6 @@ t_list	*get_lst_by_key(t_list *lst, char *key)
 	return (NULL);
 }
 
-// lvalueの方が大きいので、tmpをrvalueにchange
 t_list	*get_list_by_min_ascii_key(t_list *lst)
 {
 	t_list	*tmp;

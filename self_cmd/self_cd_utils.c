@@ -56,8 +56,6 @@ void	update_all_environ(char *new_pwd, t_exec_attr *ea)
 	free(export_pwd);
 }
 
-// virtual pathの場合、最後に"/"が入る場合があるため、新しい"/"とかぶってしまう。
-// なので、/を余分に付け加えないようにする
 char	*create_new_pwd(char *pwd, char *path)
 {
 	char	*new_value;

@@ -14,15 +14,6 @@
 #include "libft.h"
 #include "common.h"
 
-/*
-
-hoge$HOME"HOGE"
-
-$HOME
--> /home/akky
-hoge + /home/akky + "HOGE"
-*/
-
 char	*expand_single_envvar(char *str, const char *from, const char *to,
 		size_t *i)
 {

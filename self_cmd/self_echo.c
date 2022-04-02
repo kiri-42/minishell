@@ -14,7 +14,6 @@
 #include "self_cmd.h"
 #include <stdbool.h>
 
-// あとでbayaさんに聞く
 static int	get_n_index(char *str)
 {
 	int	i;

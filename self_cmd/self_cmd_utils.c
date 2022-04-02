@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:31:50 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/23 16:12:21 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/01 15:07:55 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	is_invalid_name(char *name)
 
 void	print_error_msg_with_var(char *cmd_name, char *var)
 {
-	ft_putstr_fd("bash: ", STDERR_FILENO);
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	ft_putstr_fd(cmd_name, STDERR_FILENO);
 	ft_putstr_fd(": `", STDERR_FILENO);
 	ft_putstr_fd(var, STDERR_FILENO);
@@ -42,7 +42,7 @@ void	print_error_msg_with_var(char *cmd_name, char *var)
 
 void	print_error(char *cmd, char *input)
 {
-	ft_putstr_fd("bash: ", STDERR_FILENO);
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	ft_putstr_fd(cmd, STDERR_FILENO);
 	ft_putstr_fd(": ", STDERR_FILENO);
 	perror(input);
