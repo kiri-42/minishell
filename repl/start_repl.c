@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:42:04 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/06 14:59:13 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/08 16:00:30 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,5 @@ void	start_repl(void)
 			continue ;
 		ft_lstclear(&ea->cmd_lst, delete_pipe);
 	}
-	clear_history();
 	exit(g_exit_status);
 }
