@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:28:09 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/30 15:30:09 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/08 17:16:32 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	pipe_process(t_exec_attr *ea, int pipe_count)
 	pa.pipe_count = pipe_count;
 	malloc_pipe_fd(&pa);
 	malloc_cpid_array(&pa);
-	ea->is_unpermitted = (bool *)ft_xmalloc(pa.pipe_count + 1);
+	ea->is_unpermitted = (bool *)ft_xcalloc(pa.pipe_count + 1);
 	pa.cmd_i = 0;
 	tmp = ea->cmd_lst;
 	while (pa.cmd_i < pa.pipe_count + 1)
