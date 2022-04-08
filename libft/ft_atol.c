@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:23:29 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/25 15:31:57 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/08 16:27:03 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,18 @@ bool	ft_atol(const char *nptr, long *num)
 	sign = 1;
 	while (ft_isspace(nptr[i]))
 		i++;
-	if (!ft_strncmp(nptr, "-9223372036854775808", 20) \
-		&& ft_strlen(nptr) == 20)
-	{
-		*num = LONG_MIN;
-		return (true);
-	}
 	read_sign(&sign, &i, nptr[i]);
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	while ((nptr[i] == '0'))
+		i++;
+	if (nptr[i] == '\0')
+		return (true);
+	while (ft_isdigit(nptr[i]))
 	{
-		*num = (*num * 10) + (nptr[i] - '0');
-		if (*num < 0)
+		if (sign == 1 && *num > (LONG_MAX - (nptr[i] - '0')) / 10)
 			return (false);
+		else if (sign == -1 && (-1 * *num) < (LONG_MIN + (nptr[i] - '0')) / 10)
+			return (false);
+		*num = *num * 10 + (nptr[i] - '0');
 		i++;
 	}
 	*num *= sign;
