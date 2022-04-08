@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:16:40 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/19 15:19:00 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/05 18:47:06 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ bool	should_return(t_lexer_product *lexer_product)
 	{
 		write(STDERR, "syntax error\n", 13);
 		delete_lexer_product(lexer_product);
+		g_exit_status = 258;
 		return (true);
 	}
 	return (false);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_repl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:42:04 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/30 16:44:24 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/06 14:59:13 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	start_repl(void)
 			continue ;
 		ft_lstclear(&ea->cmd_lst, delete_pipe);
 	}
-	free_exec_attr(ea);
 	clear_history();
 	exit(g_exit_status);
 }
