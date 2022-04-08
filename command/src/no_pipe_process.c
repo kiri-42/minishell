@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   no_pipe_process.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 16:53:46 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/29 16:29:23 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/08 16:59:54 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	no_pipe_process(t_exec_attr *ea)
 	t_cmd	*c;
 
 	c = get_cmd(ea);
-	ea->is_unpermitted = (bool *)ft_xmalloc(1);
+	ea->is_unpermitted = (bool *)ft_xcalloc(1);
 	if (check_redirect_file(c, ea))
 		return ;
 	if (c->cmd == NULL)
