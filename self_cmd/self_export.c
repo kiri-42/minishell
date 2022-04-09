@@ -6,27 +6,11 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:27 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/23 16:10:59 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/09 15:22:12 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "self_cmd.h"
-
-int	exec_self_export(t_cmd *cmd, t_exec_attr *ea)
-{
-	char	*argv_one;
-	bool	exit_stat;
-
-	exit_stat = true;
-	argv_one = get_argv_one(cmd);
-	if (argv_one == NULL || is_sharp(argv_one))
-		print_all_export_lst(ea);
-	else
-		export_with_args(cmd, ea, &exit_stat);
-	if (exit_stat)
-		return (0);
-	return (1);
-}
 
 bool	addlst_sort_by_ascii(t_list **export_lst, char **arg)
 {
@@ -90,4 +74,20 @@ void	export_with_args(t_cmd *cmd, t_exec_attr *ea, bool *exit_stat)
 		}
 		lst = lst->next;
 	}
+}
+
+int	exec_self_export(t_cmd *cmd, t_exec_attr *ea)
+{
+	char	*argv_one;
+	bool	exit_stat;
+
+	exit_stat = true;
+	argv_one = get_argv_one(cmd);
+	if (argv_one == NULL || is_sharp(argv_one))
+		print_all_export_lst(ea);
+	else
+		export_with_args(cmd, ea, &exit_stat);
+	if (exit_stat)
+		return (0);
+	return (1);
 }
