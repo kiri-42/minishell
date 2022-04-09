@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:26:37 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:26:43 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/09 16:07:31 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
+	ssize_t	ret;
+
 	if (s == NULL)
 		return ;
-	write(fd, s, ft_strlen(s));
+	ret = write(fd, s, ft_strlen(s));
+	if (ret < 0)
+		exit(EXIT_FAILURE);
 }

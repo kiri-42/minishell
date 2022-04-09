@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_my_putchar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:25:51 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/25 15:24:29 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/09 16:06:11 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,10 @@
 
 int64_t	ft_my_putchar(char c)
 {
-	return (write(1, &c, 1));
+	ssize_t	ret;
+
+	ret = write(1, &c, 1);
+	if (ret < 0)
+		exit(EXIT_FAILURE);
+	return (ret);
 }

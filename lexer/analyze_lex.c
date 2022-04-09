@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   analyze_lex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:16:40 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/05 18:47:06 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/09 16:09:02 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ bool	should_return(t_lexer_product *lexer_product)
 	}
 	if (!is_valid_tokens(lexer_product->token_list))
 	{
-		write(STDERR, "syntax error\n", 13);
+		if (write(STDERR, "syntax error\n", 13) < 0)
+			exit(EXIT_FAILURE);
 		delete_lexer_product(lexer_product);
 		g_exit_status = 258;
 		return (true);
