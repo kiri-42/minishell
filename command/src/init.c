@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:12:49 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/30 17:10:32 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/09 17:17:04 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	init_oldpwd(t_exec_attr *ea)
 	store_arg_in_export(ea, "OLDPWD", NULL);
 	store_arg_in_env(ea, "OLDPWD", NULL);
 	ea->current_pwd = getcwd(NULL, 0);
+	if (!ea->current_pwd)
+		ea->current_pwd = ft_strdup("Error no entry");
 	store_arg_in_export(ea, "PWD", ea->current_pwd);
 	store_arg_in_env(ea, "PWD", ea->current_pwd);
 }
