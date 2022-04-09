@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:28:09 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/08 17:16:32 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/09 15:46:54 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	pipe_process(t_exec_attr *ea, int pipe_count)
 	pa.pipe_count = pipe_count;
 	malloc_pipe_fd(&pa);
 	malloc_cpid_array(&pa);
-	ea->is_unpermitted = (bool *)ft_xcalloc(pa.pipe_count + 1);
+	ea->is_unpermitted = (bool *)ft_calloc(1, pa.pipe_count + 1);
 	pa.cmd_i = 0;
 	tmp = ea->cmd_lst;
 	while (pa.cmd_i < pa.pipe_count + 1)

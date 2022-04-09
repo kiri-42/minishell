@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   self_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:39 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/25 16:05:01 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/09 15:47:15 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	*get_arg1(t_cmd *cmd)
 	if (arg1_lst == NULL)
 		return (cmd->args->content);
 	arg1 = arg1_lst->content;
-	return (ft_strtrim(arg1, " "));
+	return (ft_strtrim(arg1, " \t"));
 }
 
 static void	validate_arg1(t_cmd *cmd, long *arg1_num)

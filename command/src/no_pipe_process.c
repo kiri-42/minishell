@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 16:53:46 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/08 16:59:54 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/09 15:46:40 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	no_pipe_process(t_exec_attr *ea)
 	t_cmd	*c;
 
 	c = get_cmd(ea);
-	ea->is_unpermitted = (bool *)ft_xcalloc(1);
+	ea->is_unpermitted = (bool *)ft_calloc(1, 1);
 	if (check_redirect_file(c, ea))
 		return ;
 	if (c->cmd == NULL)
