@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:12:49 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/09 17:17:04 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/11 16:19:10 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_oldpwd(t_exec_attr *ea)
 	store_arg_in_env(ea, "OLDPWD", NULL);
 	ea->current_pwd = getcwd(NULL, 0);
 	if (!ea->current_pwd)
-		ea->current_pwd = ft_strdup("Error no entry");
+		ft_putstr_fd("shell-init: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n", 2);
 	store_arg_in_export(ea, "PWD", ea->current_pwd);
 	store_arg_in_env(ea, "PWD", ea->current_pwd);
 }
