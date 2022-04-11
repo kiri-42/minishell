@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   self_pwd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:31:22 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/21 16:23:42 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/11 16:49:13 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,12 @@ static char	*get_pathname(t_exec_attr *ea)
 	if (lst == NULL)
 		return (NULL);
 	pathname = ft_kvsget_value(lst->content);
-	if (ft_strlen(pathname) == 0)
+	if (!pathname)
+	{
+		ft_putstr_fd("pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n", 2);
+		return (NULL);
+	}
+	if (!pathname || ft_strlen(pathname) == 0)
 		return (NULL);
 	return (pathname);
 }
@@ -35,7 +40,10 @@ int	exec_self_pwd(t_cmd *cmd, t_exec_attr *ea)
 	pathname = get_pathname(ea);
 	if (pathname == NULL)
 		pathname = ea->current_pwd;
-	ft_putstr_fd(pathname, STDOUT_FILENO);
-	ft_putstr_fd("\n", STDOUT_FILENO);
+	else
+	{
+		ft_putstr_fd(pathname, STDOUT_FILENO);
+		ft_putstr_fd("\n", STDOUT_FILENO);
+	}
 	return (0);
 }
