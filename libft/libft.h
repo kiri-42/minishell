@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:28:11 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/30 15:23:54 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/11 22:46:35 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int		ft_isspace(int c);
 int		ft_isletter(int c);
 char	*ft_strcut_back(char *str, char c);
 char	**ft_separate(char *str, char separator);
+char	**ft_separate_str(char *str, char *separator);
 
 // extra files
 

@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:41:39 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/11 17:28:58 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/11 23:07:31 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,25 @@ void	store_allenv_in_export(t_exec_attr *ea, char **environ)
 	ea->export_lst = export_lst;
 }
 
+static bool	store_value(char *export_value, char *key, int export_type, \
+					t_exec_attr *ea)
+{
+	if (export_type == EXPORT_APPEND)
+	{
+		if (!append_value(ea->export_lst, key, export_value))
+			return (false);
+	}
+	else if (export_type == EXPORT_NEW)
+	{
+		if (!update_value(ea->export_lst, key, export_value))
+			return (false);
+	}
+	return (true);
+}
+
 // Update the value if it exists.
-bool	store_arg_in_export(t_exec_attr *ea, char *key, char *value, int export_type)
+bool	store_arg_in_export(t_exec_attr *ea, char *key, char *value, \
+							int export_type)
 {
 	char	*export_value;
 	t_list	*target;
@@ -72,16 +89,8 @@ bool	store_arg_in_export(t_exec_attr *ea, char *key, char *value, int export_typ
 	target = get_lst_by_key(ea->export_lst, key);
 	if (target != NULL)
 	{
-		if (export_type == EXPORT_APPEND)
-		{
-			if (!append_value(ea->export_lst, key, export_value))
-				return (false);
-		}
-		else if (export_type == EXPORT_NEW)
-		{
-			if (!update_value(ea->export_lst, key, export_value))
-				return (false);
-		}
+		if (!store_value(export_value, key, export_type, ea))
+			return (false);
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:03 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/11 17:21:35 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/11 22:55:10 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 typedef enum e_export_type
 {
-	EXPORT_ERROR = -1,
+	EXPORT_NULL = -1,
 	EXPORT_NOKEY,
 	EXPORT_APPEND,
 	EXPORT_NEW,
@@ -85,7 +85,6 @@ int			exec_self_export(t_cmd *cmd, t_exec_attr *ea);
 void		store_arg_only_export(t_exec_attr *ea, char *key);
 int			check_export_arg(char **arg);
 void		export_with_args(t_cmd *cmd, t_exec_attr *ea, bool *exit_stat);
-bool		addlst_sort_by_ascii(t_list **export_lst, char **arg);
 
 // self_export_utils.c
 void		print_export_kvs(void *content);
@@ -94,6 +93,10 @@ void		print_all_export_lst(t_exec_attr *ea);
 bool		is_sharp(char *arg);
 int			check_export_arg(char **arg);
 void		store_null_env(t_exec_attr *ea, char *arg, bool *exit_stat);
+
+// self_export_utils2.c
+bool		addlst_sort_by_ascii(t_list **export_lst, char **arg);
+void		store_env(int ret, t_exec_attr *ea, char **kv, int export_type);
 
 // self_cmd_utils.c
 bool		is_invalid_name(char *name);

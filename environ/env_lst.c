@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:41:55 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/11 17:24:55 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/11 22:55:47 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	store_allenv_in_envlst(t_exec_attr *ea, char **environ)
 	ea->env_lst = env_lst;
 }
 
-bool	store_arg_in_env(t_exec_attr *ea, char *key, char *value, int export_type)
+bool	store_arg_in_env(t_exec_attr *ea, char *key, char *value, \
+							int export_type)
 {
 	t_list	*target;
 

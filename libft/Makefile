@@ -63,6 +63,7 @@ SRCS :=	ft_strlen.c \
 		ft_put_error.c\
 		ft_replace_str.c\
 		ft_separate.c\
+		ft_separate_str.c\
 		ft_xmalloc.c\
 		ft_xfork.c\
 		ft_xdup2.c\
