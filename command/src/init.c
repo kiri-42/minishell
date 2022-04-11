@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:12:49 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/11 16:19:10 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/11 17:03:12 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	init_oldpwd(t_exec_attr *ea)
 	del_export_lst_by_key(ea->export_lst, "OLDPWD", ea);
 	del_env_lst_by_key(ea->env_lst, "PWD", ea);
 	del_export_lst_by_key(ea->export_lst, "PWD", ea);
-	store_arg_in_export(ea, "OLDPWD", NULL);
-	store_arg_in_env(ea, "OLDPWD", NULL);
+	store_arg_in_export(ea, "OLDPWD", NULL, 2);
+	store_arg_in_env(ea, "OLDPWD", NULL, 2);
 	ea->current_pwd = getcwd(NULL, 0);
 	if (!ea->current_pwd)
 		ft_putstr_fd("shell-init: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n", 2);
-	store_arg_in_export(ea, "PWD", ea->current_pwd);
-	store_arg_in_env(ea, "PWD", ea->current_pwd);
+	store_arg_in_export(ea, "PWD", ea->current_pwd, 2);
+	store_arg_in_env(ea, "PWD", ea->current_pwd, 2);
 }
 
 void	store_stdfd(t_exec_attr *ea)

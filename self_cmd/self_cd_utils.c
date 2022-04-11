@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:00:06 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/25 15:15:05 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:05:16 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ void	update_all_environ(char *new_pwd, t_exec_attr *ea)
 	if (pwdlst != NULL)
 	{
 		export_new_pwd = create_export_value(new_pwd);
-		update_value(ea->env_lst, "PWD", new_pwd, ea);
-		update_value(ea->export_lst, "PWD", export_new_pwd, ea);
+		update_value(ea->env_lst, "PWD", new_pwd);
+		update_value(ea->export_lst, "PWD", export_new_pwd);
 		free(export_new_pwd);
 	}
-	update_value(ea->env_lst, "OLDPWD", pwd, ea);
-	update_value(ea->export_lst, "OLDPWD", export_pwd, ea);
+	update_value(ea->env_lst, "OLDPWD", pwd);
+	update_value(ea->export_lst, "OLDPWD", export_pwd);
 	free(pwd);
 	free(export_pwd);
 }

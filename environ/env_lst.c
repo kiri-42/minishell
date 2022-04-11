@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:41:55 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/11 16:44:18 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:03:44 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ bool	store_arg_in_env(t_exec_attr *ea, char *key, char *value, int export_type)
 	{
 		if (export_type == 1)
 		{
-			if (!append_value(ea->env_lst, key, value, ea))
+			if (!append_value(ea->env_lst, key, value))
 				return (false);
 		}
 		else if (export_type == 2)
 		{
-			if (!update_value(ea->env_lst, key, value, ea))
+			if (!update_value(ea->env_lst, key, value))
 				return (false);
 		}
 	}
