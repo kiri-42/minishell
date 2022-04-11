@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:31:07 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/11 17:07:27 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:29:19 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	store_null_env(t_exec_attr *ea, char *arg, bool *exit_stat)
 	}
 	else
 	{
-		store_arg_in_export(ea, arg, NULL, 2);
-		store_arg_in_env(ea, arg, NULL, 2);
+		store_arg_in_export(ea, arg, NULL, EXPORT_NEW);
+		store_arg_in_env(ea, arg, NULL, EXPORT_NEW);
 	}
 }

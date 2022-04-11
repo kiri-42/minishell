@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:41:39 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/11 17:04:16 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:28:58 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ bool	store_arg_in_export(t_exec_attr *ea, char *key, char *value, int export_typ
 	target = get_lst_by_key(ea->export_lst, key);
 	if (target != NULL)
 	{
-		if (export_type == 1)
+		if (export_type == EXPORT_APPEND)
 		{
 			if (!append_value(ea->export_lst, key, export_value))
 				return (false);
 		}
-		else if (export_type == 2)
+		else if (export_type == EXPORT_NEW)
 		{
 			if (!update_value(ea->export_lst, key, export_value))
 				return (false);

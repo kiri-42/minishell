@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:03 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/24 16:16:17 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:21:35 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@
 # include "execute_struct.h"
 # include "common.h"
 # include "command.h"
+
+typedef enum e_export_type
+{
+	EXPORT_ERROR = -1,
+	EXPORT_NOKEY,
+	EXPORT_APPEND,
+	EXPORT_NEW,
+}	t_export_type;
 
 # define CD "cd"
 # define ECHO "echo"

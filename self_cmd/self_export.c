@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:27 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/11 16:56:13 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:24:09 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,16 @@ int	check_export_type(char *arg)
 
 	strchr_ret = ft_strchr(arg, '=');
 	if (strchr_ret == NULL)
-		return (-1);
+		return (EXPORT_ERROR);
 	if (is_same_str(strchr_ret, arg))
-		return (0);
+		return (EXPORT_NOKEY);
 	if (*(strchr_ret - 1) == '+')
 	{
 		if (is_same_str(strchr_ret - 1, arg))
-			return (0);
-		return (1);
+			return (EXPORT_NOKEY);
+		return (EXPORT_APPEND);
 	}
-	return (2);
+	return (EXPORT_NEW);
 }
 
 char	**ft_separate2(char *str, char *separators)
@@ -104,13 +104,13 @@ void	export_with_args(t_cmd *cmd, t_exec_attr *ea, bool *exit_stat)
 	{
 		arg = (char *)(lst->content);
 		export_type = check_export_type(arg);
-		if (export_type == -1)
+		if (export_type == EXPORT_ERROR)
 			store_null_env(ea, arg, exit_stat);
-		else if (export_type == 0)
+		else if (export_type == EXPORT_NOKEY)
 			error_process(arg, exit_stat);
 		else
 		{
-			if (export_type == 1)
+			if (export_type == EXPORT_APPEND)
 			{
 				kv = ft_separate2(arg, "+=");
 				ret = check_export_arg(kv);
@@ -120,7 +120,7 @@ void	export_with_args(t_cmd *cmd, t_exec_attr *ea, bool *exit_stat)
 					store_env(ret, ea, kv, export_type);
 				free_char_dptr(kv);
 			}
-			else if (export_type == 2)
+			else if (export_type == EXPORT_NEW)
 			{
 				kv = ft_separate(arg, '=');
 				ret = check_export_arg(kv);
