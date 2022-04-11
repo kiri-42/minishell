@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:31:32 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/11 16:48:00 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/11 17:27:27 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ int	exec_self_unset(t_cmd *cmd, t_exec_attr *ea)
 		del_env_lst_by_key(ea->env_lst, arg, ea);
 		del_export_lst_by_key(ea->export_lst, arg, ea);
 		if (is_same_str(arg, "PWD"))
-			ea->current_pwd = ft_strdup("");
+		{
+			free(ea->current_pwd);
+			ea->current_pwd = ft_xstrdup("");
+		}
 		lst = lst->next;
 	}
 	if (exit_status)
