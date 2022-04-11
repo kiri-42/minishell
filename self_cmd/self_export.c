@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:27 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/09 15:22:12 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/11 16:56:13 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,64 @@ static void	error_process(char *var, bool *exit_stat)
 	print_error_msg_with_var(EXPORT, var);
 }
 
-void	store_env(int ret, t_exec_attr *ea, char **kv)
+void	store_env(int ret, t_exec_attr *ea, char **kv, int export_type)
 {
 	if (ret == NO_VALUE)
 		kv[VALUE] = ft_strdup("");
-	if (!store_arg_in_env(ea, kv[KEY], kv[VALUE]))
+	if (!store_arg_in_env(ea, kv[KEY], kv[VALUE], export_type))
 	{
 		perror("store_env");
 		exit(EXIT_FAILURE);
 	}
-	if (!store_arg_in_export(ea, kv[KEY], kv[VALUE]))
+	if (!store_arg_in_export(ea, kv[KEY], kv[VALUE], export_type))
 	{
 		perror("store_env");
 		exit(EXIT_FAILURE);
 	}
+}
+
+int	check_export_type(char *arg)
+{
+	char	*strchr_ret;
+
+	strchr_ret = ft_strchr(arg, '=');
+	if (strchr_ret == NULL)
+		return (-1);
+	if (is_same_str(strchr_ret, arg))
+		return (0);
+	if (*(strchr_ret - 1) == '+')
+	{
+		if (is_same_str(strchr_ret - 1, arg))
+			return (0);
+		return (1);
+	}
+	return (2);
+}
+
+char	**ft_separate2(char *str, char *separators)
+{
+	char	**ret;
+	char	*front_sep_ptr;
+	size_t	separators_len;
+
+	if (str == NULL || separators == NULL)
+		return (NULL);
+	front_sep_ptr = ft_strnstr(str, separators, ft_strlen(str));
+	if (front_sep_ptr == NULL)
+		return (NULL);
+	ret = (char **)ft_xmalloc(sizeof(char *) * (2 + 1));
+	separators_len = ft_strlen(separators);
+	if (*(front_sep_ptr + separators_len) == '\0')
+	{
+		ret[0] = ft_substr(str, 0, front_sep_ptr - str);
+		ret[1] = NULL;
+		ret[2] = NULL;
+		return (ret);
+	}
+	ret[0] = ft_substr(str, 0, front_sep_ptr - str);
+	ret[1] = ft_strdup(front_sep_ptr + separators_len);
+	ret[2] = NULL;
+	return (ret);
 }
 
 void	export_with_args(t_cmd *cmd, t_exec_attr *ea, bool *exit_stat)
@@ -53,24 +97,39 @@ void	export_with_args(t_cmd *cmd, t_exec_attr *ea, bool *exit_stat)
 	int			ret;
 	char		*arg;
 	t_list		*lst;
+	int			export_type;
 
 	lst = cmd->args->next;
 	while (lst != NULL)
 	{
 		arg = (char *)(lst->content);
-		if (ft_strchr(arg, '=') == NULL)
+		export_type = check_export_type(arg);
+		if (export_type == -1)
 			store_null_env(ea, arg, exit_stat);
-		else if (ft_strchr(arg, '=') == arg)
+		else if (export_type == 0)
 			error_process(arg, exit_stat);
 		else
 		{
-			kv = ft_separate(arg, '=');
-			ret = check_export_arg(kv);
-			if (ret == INVALID_IDENTIFER)
-				error_process(kv[KEY], exit_stat);
-			else
-				store_env(ret, ea, kv);
-			free_char_dptr(kv);
+			if (export_type == 1)
+			{
+				kv = ft_separate2(arg, "+=");
+				ret = check_export_arg(kv);
+				if (ret == INVALID_IDENTIFER)
+					error_process(kv[KEY], exit_stat);
+				else
+					store_env(ret, ea, kv, export_type);
+				free_char_dptr(kv);
+			}
+			else if (export_type == 2)
+			{
+				kv = ft_separate(arg, '=');
+				ret = check_export_arg(kv);
+				if (ret == INVALID_IDENTIFER)
+					error_process(kv[KEY], exit_stat);
+				else
+					store_env(ret, ea, kv, export_type);
+				free_char_dptr(kv);
+			}
 		}
 		lst = lst->next;
 	}

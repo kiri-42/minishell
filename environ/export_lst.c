@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:41:39 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/24 17:28:37 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/11 16:43:19 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	store_allenv_in_export(t_exec_attr *ea, char **environ)
 }
 
 // Update the value if it exists.
-bool	store_arg_in_export(t_exec_attr *ea, char *key, char *value)
+bool	store_arg_in_export(t_exec_attr *ea, char *key, char *value, int export_type)
 {
 	char	*export_value;
 	t_list	*target;
@@ -72,8 +72,16 @@ bool	store_arg_in_export(t_exec_attr *ea, char *key, char *value)
 	target = get_lst_by_key(ea->export_lst, key);
 	if (target != NULL)
 	{
-		if (!update_value(ea->export_lst, key, export_value, ea))
-			return (false);
+		if (export_type == 1)
+		{
+			if (!append_value(ea->export_lst, key, export_value, ea))
+				return (false);
+		}
+		else if (export_type == 2)
+		{
+			if (!update_value(ea->export_lst, key, export_value, ea))
+				return (false);
+		}
 	}
 	else
 	{

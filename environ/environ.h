@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:41:44 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/24 17:24:25 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/11 16:54:42 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@
 
 // env_lst.c
 void		store_allenv_in_envlst(t_exec_attr *ea, char **environ);
-bool		store_arg_in_env(t_exec_attr *ea, char *key, char *value);
+bool		store_arg_in_env(t_exec_attr *ea, char *key, char *value, \
+								int export_type);
 
 // export_lst.c
 char		*create_export_value(char *value);
 void		store_allenv_in_export(t_exec_attr *ea, char **environ);
-bool		store_arg_in_export(t_exec_attr *ea, char *key, char *value);
+bool		store_arg_in_export(t_exec_attr *ea, char *key, char *value, \
+									int export_type);
 
 // kvs_utils.c
 bool		is_lvalue_bigger_ascii(char *lvalue, char *rvalue);
@@ -48,6 +50,7 @@ void		sort_listkey_by_ascii(t_list *lst);
 
 // lst_utils_2.c
 bool		swap_lst_content(t_list *a, t_list *b);
-bool		update_value(t_list *lst, char *key, char *new_v, t_exec_attr *ea);
+bool		update_value(t_list *lst, char *key, char *new_v);
+bool		append_value(t_list *lst, char *key, char *append_v);
 
 #endif
