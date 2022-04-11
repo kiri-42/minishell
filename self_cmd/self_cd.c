@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   self_cd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:31:45 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/24 16:25:44 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/11 17:23:23 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	exec_self_cd(t_cmd *cmd, t_exec_attr *ea)
 	int		status;
 
 	argv_one = get_argv_one(cmd);
-	if (argv_one == NULL)
+	if (argv_one == NULL || ea->current_pwd == NULL)
 		return (1);
 	status = x_chdir(argv_one, ea);
 	return (status);
