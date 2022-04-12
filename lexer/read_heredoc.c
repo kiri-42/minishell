@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:15:09 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/02 23:50:00 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/12 21:33:12 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ bool	is_heredoc_succeeded(pid_t	pid)
 		if (WIFSIGNALED(wstatus))
 		{
 			printf("\n");
-			g_exit_status = WEXITSTATUS(wstatus);
+			g_exit_status = 130;
 			return (false);
 		}
 		if (wait_ret > 0)
