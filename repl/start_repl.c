@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_repl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:42:04 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/08 16:00:30 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/12 16:23:58 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	start_repl(void)
 		line = do_readline();
 		if (line == NULL)
 			break ;
-		lexer_product = analyze_lex(line, ea->env_lst);
+		lexer_product = analyze_lex(line, ea->env_lst, ea);
 		free(line);
 		if (lexer_product == NULL)
 			continue ;

@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:12:49 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/11 17:28:04 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/12 16:23:44 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,9 @@ void	init_new(t_exec_attr **ea)
 	extern char	**environ;
 
 	*ea = (t_exec_attr *)ft_calloc(sizeof(t_exec_attr), 1);
-	if (*ea == NULL)
-		abort_minishell(MALLOC_ERROR, *ea);
 	store_allenv_in_envlst(*ea, environ);
 	store_allenv_in_export(*ea, environ);
 	store_stdfd(*ea);
 	init_oldpwd(*ea);
+	(*ea)->is_sigint_hdoc = false;
 }

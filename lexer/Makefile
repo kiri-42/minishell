@@ -6,6 +6,7 @@ HEADERS		=	. \
 				../ \
 				../libft/ \
 				../signal/includes/ \
+				../command/includes/ \
 
 
 INCLUDES	=	$(addprefix -I, $(HEADERS))

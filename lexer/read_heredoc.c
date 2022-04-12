@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   read_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:15:09 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/02 23:50:00 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/12 17:03:36 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "libft.h"
 #include "sigaction.h"
+#include "execute_struct.h"
 #include <fcntl.h>
 #include <readline/history.h>
 #include <readline/readline.h>
@@ -57,7 +58,7 @@ void	read_heredoc_in_child_process(t_lexer *lexer, t_list *env_list,
 	exit(EXIT_SUCCESS);
 }
 
-bool	is_heredoc_succeeded(pid_t	pid)
+bool	is_heredoc_succeeded(pid_t	pid, t_exec_attr *ea)
 {
 	pid_t	wait_ret;
 	int		wstatus;
@@ -74,7 +75,7 @@ bool	is_heredoc_succeeded(pid_t	pid)
 		if (WIFSIGNALED(wstatus))
 		{
 			printf("\n");
-			g_exit_status = WEXITSTATUS(wstatus);
+			ea->is_sigint_hdoc = true;
 			return (false);
 		}
 		if (wait_ret > 0)
@@ -86,7 +87,7 @@ bool	is_heredoc_succeeded(pid_t	pid)
 }
 
 bool	read_heredoc_process(t_lexer *lexer, t_list *env_list, bool has_quote,
-							char *delimiter)
+							char *delimiter, t_exec_attr *ea)
 {
 	pid_t	pid;
 
@@ -95,7 +96,7 @@ bool	read_heredoc_process(t_lexer *lexer, t_list *env_list, bool has_quote,
 		read_heredoc_in_child_process(lexer, env_list, has_quote, delimiter);
 	else
 	{
-		if (!is_heredoc_succeeded(pid))
+		if (!is_heredoc_succeeded(pid, ea))
 		{
 			delete_lexer(lexer);
 			free(delimiter);
@@ -105,7 +106,7 @@ bool	read_heredoc_process(t_lexer *lexer, t_list *env_list, bool has_quote,
 	return (true);
 }
 
-bool	read_heredoc(t_lexer *lexer, t_list *env_list)
+bool	read_heredoc(t_lexer *lexer, t_list *env_list, t_exec_attr *ea)
 {
 	char	*tmp;
 	t_list	*heredoc_delimiter;
@@ -124,7 +125,7 @@ bool	read_heredoc(t_lexer *lexer, t_list *env_list)
 		delimiter = tmp;
 	}
 	register_heredocs(lexer, delimiter);
-	if (!read_heredoc_process(lexer, env_list, has_quote, delimiter))
+	if (!read_heredoc_process(lexer, env_list, has_quote, delimiter, ea))
 		return (false);
 	free(delimiter);
 	return (true);

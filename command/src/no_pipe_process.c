@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   no_pipe_process.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 16:53:46 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/09 15:46:40 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/12 16:43:20 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	child_process(char *cmd_path, char **cmdv, t_cmd *c, \
 		execve_error(errno, c->cmd);
 }
 
-static void	parent_process(char *cmd_path, char **cmdv, pid_t cpid)
+static void	parent_process(char *cmd_path, char **cmdv, pid_t cpid, t_exec_attr *ea)
 {
 	pid_t	wait_ret;
 	int		status;
@@ -47,6 +47,11 @@ static void	parent_process(char *cmd_path, char **cmdv, pid_t cpid)
 	}
 	if (!WIFSIGNALED(status))
 		g_exit_status = WEXITSTATUS(status);
+	if (ea->is_sigint_hdoc == true)
+	{
+		g_exit_status = 130;
+		ea->is_sigint_hdoc = false;
+	}
 }
 
 void	fork_process(char *cmd_path, t_exec_attr *ea, t_cmd *c, char **cmdv)
@@ -57,7 +62,7 @@ void	fork_process(char *cmd_path, t_exec_attr *ea, t_cmd *c, char **cmdv)
 	if (cpid == 0)
 		child_process(cmd_path, cmdv, c, ea);
 	else
-		parent_process(cmd_path, cmdv, cpid);
+		parent_process(cmd_path, cmdv, cpid, ea);
 }
 
 void	execute_ext_cmd(t_cmd *c, t_exec_attr *ea)
