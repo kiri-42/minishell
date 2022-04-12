@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:27 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/11 22:53:41 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/12 03:02:00 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ int	exec_self_export(t_cmd *cmd, t_exec_attr *ea)
 	argv_one = get_argv_one(cmd);
 	if (argv_one == NULL || is_sharp(argv_one))
 		print_all_export_lst(ea);
+	else if (ft_strlen(argv_one) == 0)
+		error_process(argv_one, &exit_stat);
 	else
 		export_with_args(cmd, ea, &exit_stat);
 	if (exit_stat)
