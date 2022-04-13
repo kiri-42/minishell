@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:00:06 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/13 15:58:09 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/13 20:28:02 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*create_new_pwd(char *pwd, char *path)
 	new_value = (char *)ft_calloc(sizeof(char), new_value_len);
 	if (pwd)
 		ft_strlcat(new_value, pwd, new_value_len);
-	if (pwd && pwd[pwd_len - 1] != '/')
+	if (pwd && pwd_len > 0 && pwd[pwd_len - 1] != '/')
 		ft_strlcat(new_value, "/", new_value_len);
 	ft_strlcat(new_value, path, new_value_len);
 	return (new_value);
@@ -107,7 +107,7 @@ bool	is_end_of_slash(char *path)
 		return (false);
 	while (path[i] != '\0')
 		i++;
-	if (path[i - 1] == '/')
+	if (i > 0 && path[i - 1] == '/')
 		return (true);
 	return (false);
 }
