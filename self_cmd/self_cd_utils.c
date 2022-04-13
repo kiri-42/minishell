@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:00:06 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/13 20:28:02 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/13 21:02:29 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ char	*create_new_pwd(char *pwd, char *path)
 		new_value_len = (pwd_len + path_len + NULL_CHAR);
 	else
 		new_value_len = (pwd_len + SLASH + path_len + NULL_CHAR);
-	if (pwd && (is_same_str(".", path) || is_same_str("./", path)))
-		return (ft_strdup(pwd));
 	new_value = (char *)ft_calloc(sizeof(char), new_value_len);
 	if (pwd)
 		ft_strlcat(new_value, pwd, new_value_len);

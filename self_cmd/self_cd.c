@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:31:45 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/13 20:55:39 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/13 21:02:55 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*get_new_pwd(t_exec_attr *ea, char *path)
 	char	*new_pwd;
 	char	*tmp;
 
-	if (has_diff(path, ea) && ea->invalid_path == false)
+	if (has_diff(path, ea))
 	{
 		tmp = create_new_pwd(ea->current_pwd, path);
 		new_pwd = remove_relative(tmp);
@@ -57,7 +57,6 @@ char	*get_new_pwd(t_exec_attr *ea, char *path)
 	}
 	else
 	{
-		ea->invalid_path = false;
 		new_pwd = x_getcwd(ea);
 		if (new_pwd == NULL)
 		{
