@@ -6,15 +6,11 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:40:19 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:40:20 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:07:30 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
-#include "lexer.h"
-#include "libft.h"
 #include "parser.h"
-#include <stdbool.h>
 
 /*
 input: cat fuga.txt ... hoge.txt > b.txt

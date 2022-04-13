@@ -6,14 +6,11 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:40:13 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:40:14 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:07:20 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
-#include "libft.h"
 #include "parser.h"
-#include <stdbool.h>
 
 t_file	*new_file(char *filename, bool is_double)
 {

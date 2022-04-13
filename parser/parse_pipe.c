@@ -6,13 +6,10 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:35:31 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:35:32 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:04:36 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
-#include "lexer.h"
-#include "libft.h"
 #include "parser.h"
 
 static bool	is_invalid(t_list *left_tokens, t_cmd **cmd)

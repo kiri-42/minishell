@@ -6,15 +6,19 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:40:33 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:40:34 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:04:12 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
-# include "libft.h"
+
 # include <stdbool.h>
+# include <stdio.h>
+
+# include "libft.h"
 # include "lexer/lexer.h"
+# include "common.h"
 
 typedef struct s_cmd
 {

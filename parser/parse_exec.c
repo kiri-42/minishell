@@ -6,13 +6,10 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:40:29 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:40:30 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:05:42 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
-#include "lexer.h"
-#include "libft.h"
 #include "parser.h"
 
 t_list	*filter_null_literal_cmd(t_list *lst)

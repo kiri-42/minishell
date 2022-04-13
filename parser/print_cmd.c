@@ -6,13 +6,11 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:35:41 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:35:42 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:03:02 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "parser.h"
-#include <stdio.h>
 
 void	print_files(char *name, t_list *list)
 {

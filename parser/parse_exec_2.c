@@ -6,12 +6,11 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:40:25 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:40:26 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:05:33 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
-#include "libft.h"
+#include "parser.h"
 
 void	skip_to_null(t_list **lst, char	**literal)
 {

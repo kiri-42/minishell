@@ -6,14 +6,11 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:40:06 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:40:07 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:07:09 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-#include "libft.h"
-#include "lexer.h"
-#include <stdbool.h>
 
 void	delete_file(void *file_ptr)
 {
