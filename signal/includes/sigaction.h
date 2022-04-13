@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:30:01 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/27 17:09:30 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/13 15:53:19 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
+# include <unistd.h>
 # include <signal.h>
 # include <sys/types.h>
 # include <readline/readline.h>

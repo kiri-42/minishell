@@ -6,12 +6,11 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:29:24 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/24 16:53:12 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/13 15:53:41 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sigaction.h"
-#include <unistd.h>
 
 void	handle_sigint_during_heredoc(int sig)
 {
