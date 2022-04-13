@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   self_cd_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:00:06 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/11 17:05:16 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/13 15:58:09 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 char	*get_pwd(t_list *pwdlst, t_exec_attr *ea)
 {
 	char	*pwd;
+	char	*plst_content;
 
 	if (pwdlst == NULL)
 		pwd = ft_strdup("");
 	else
 	{
-		if (ft_strlen(ft_kvsget_value(pwdlst->content)) == 0)
+		plst_content = ft_kvsget_value(pwdlst->content);
+		if (plst_content && ft_strlen(plst_content) == 0)
 			pwd = ft_strdup("");
 		else
 			pwd = ft_strdup(ea->current_pwd);
@@ -63,17 +65,20 @@ char	*create_new_pwd(char *pwd, char *path)
 	size_t	path_len;
 	size_t	pwd_len;
 
-	pwd_len = ft_strlen(pwd);
+	pwd_len = 0;
+	if (pwd)
+		pwd_len = ft_strlen(pwd);
 	path_len = ft_strlen(path);
-	if (pwd[pwd_len - 1] == '/')
+	if (pwd && pwd[pwd_len - 1] == '/')
 		new_value_len = (pwd_len + path_len + NULL_CHAR);
 	else
 		new_value_len = (pwd_len + SLASH + path_len + NULL_CHAR);
+	if (pwd && (is_same_str(".", path) || is_same_str("./", path)))
+		return (ft_strdup(pwd));
 	new_value = (char *)ft_calloc(sizeof(char), new_value_len);
-	if (new_value == NULL)
-		return (NULL);
-	ft_strlcat(new_value, pwd, new_value_len);
-	if (pwd[pwd_len - 1] != '/')
+	if (pwd)
+		ft_strlcat(new_value, pwd, new_value_len);
+	if (pwd && pwd[pwd_len - 1] != '/')
 		ft_strlcat(new_value, "/", new_value_len);
 	ft_strlcat(new_value, path, new_value_len);
 	return (new_value);
