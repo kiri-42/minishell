@@ -6,13 +6,11 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:17 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/18 17:16:21 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/13 15:59:04 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "self_cmd.h"
-#include <stdbool.h>
 
 static int	get_n_index(char *str)
 {

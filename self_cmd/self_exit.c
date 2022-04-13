@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   self_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:39 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/09 15:47:15 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/13 15:57:37 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "self_cmd.h"
-#include "common.h"
+// #include "common.h"
 
 static bool	is_num(char *str)
 {

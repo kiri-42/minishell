@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:03 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/11 22:55:10 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/13 15:59:06 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <errno.h>
 # include <limits.h>
 # include <sys/stat.h>
+# include <stdbool.h>
 
 # include "libft.h"
 # include "error_handle.h"
