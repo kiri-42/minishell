@@ -6,11 +6,11 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:12:04 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/24 16:33:06 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:18:36 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/command.h"
+#include "command.h"
 
 bool	is_not_exec_path(const char *command)
 {

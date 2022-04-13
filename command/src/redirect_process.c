@@ -6,11 +6,11 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:11:27 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/24 16:27:14 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:18:26 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/command.h"
+#include "command.h"
 
 bool	open_files_out(t_cmd *cmd)
 {

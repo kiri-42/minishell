@@ -6,11 +6,11 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 15:56:42 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/25 20:13:12 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:16:35 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/command.h"
+#include "command.h"
 
 void	reset_stdfd(t_exec_attr *ea)
 {

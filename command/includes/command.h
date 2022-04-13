@@ -6,7 +6,7 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:13:18 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/29 16:35:04 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:25:26 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <string.h>
 # include <sys/wait.h>
 # include <dirent.h>
+# include <errno.h>
 
 # include "libft.h"
 # include "color.h"

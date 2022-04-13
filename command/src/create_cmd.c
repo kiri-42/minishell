@@ -6,11 +6,11 @@
 /*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:11:53 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/25 15:55:05 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:18:31 by tkirihar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/command.h"
+#include "command.h"
 
 char	*return_new_cmd(char *new_cmd, DIR *dirp)
 {
