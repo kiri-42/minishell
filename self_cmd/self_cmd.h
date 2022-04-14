@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   self_cmd.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:03 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/13 15:59:06 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/14 16:00:05 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ bool		search_dots(size_t *i, size_t *j, char **new_split, char **split);
 // self_cd_utils3.c
 char		*remove_relative(char *path);
 char		*create_str_removed_end(char *path);
+
+// self_cd_utils4.c
+bool		is_valid_path(char *pwd);
 
 // self_echo.c
 int			exec_self_echo(t_cmd *cmd, t_exec_attr *ea);

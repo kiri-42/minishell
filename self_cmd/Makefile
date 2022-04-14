@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/10 14:19:20 by mhirabay          #+#    #+#              #
-#    Updated: 2022/04/11 22:51:54 by tkirihar         ###   ########.fr        #
+#    Updated: 2022/04/14 15:59:44 by tisoya           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS =  self_pwd.c \
 		self_cd_utils.c \
 		self_cd_utils2.c \
 		self_cd_utils3.c \
+		self_cd_utils4.c \
 		self_echo.c \
 		self_exit.c \
 		self_env.c \
