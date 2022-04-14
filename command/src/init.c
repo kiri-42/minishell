@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:12:49 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/14 16:44:30 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/14 16:55:00 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_oldpwd(t_exec_attr *ea)
 {
+	ea->unknown_pwd = false;
 	del_env_lst_by_key(ea->env_lst, "OLDPWD", ea);
 	del_export_lst_by_key(ea->export_lst, "OLDPWD", ea);
 	store_arg_in_export(ea, "OLDPWD", NULL, EXPORT_NEW);
@@ -25,6 +26,11 @@ void	init_oldpwd(t_exec_attr *ea)
 		del_export_lst_by_key(ea->export_lst, "PWD", ea);
 		store_arg_in_export(ea, "PWD", ea->current_pwd, EXPORT_NEW);
 		store_arg_in_env(ea, "PWD", ea->current_pwd, EXPORT_NEW);
+	}
+	else
+	{
+		ft_putstr_fd("shell-init: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n", 2);
+		ea->unknown_pwd = true;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:13:26 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/13 21:02:24 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/14 16:46:51 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_exec_attr
 	int		stdfd[3];
 	char	*current_pwd;
 	bool	*is_unpermitted;
+	bool	unknown_pwd;
 }	t_exec_attr;
 
 typedef struct s_env

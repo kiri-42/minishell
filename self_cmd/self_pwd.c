@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:31:22 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/14 15:27:06 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/14 16:55:27 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ int	exec_self_pwd(t_cmd *cmd, t_exec_attr *ea)
 	char	*pathname;
 
 	(void)cmd;
+	if (ea->unknown_pwd && !ea->current_pwd)
+	{
+		ft_putstr_fd("pwd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n" ,2);
+		return (0);
+	}
 	pathname = get_pathname(ea);
 	if (pathname == NULL)
 		pathname = ea->current_pwd;
