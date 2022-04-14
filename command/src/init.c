@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:12:49 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/13 21:06:59 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/14 16:44:30 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ void	init_oldpwd(t_exec_attr *ea)
 	store_arg_in_export(ea, "OLDPWD", NULL, EXPORT_NEW);
 	store_arg_in_env(ea, "OLDPWD", NULL, EXPORT_NEW);
 	ea->current_pwd = getcwd(NULL, 0);
-	del_env_lst_by_key(ea->env_lst, "PWD", ea);
-	del_export_lst_by_key(ea->export_lst, "PWD", ea);
-	store_arg_in_export(ea, "PWD", ea->current_pwd, EXPORT_NEW);
-	store_arg_in_env(ea, "PWD", ea->current_pwd, EXPORT_NEW);
+	if (ea->current_pwd)
+	{
+		del_env_lst_by_key(ea->env_lst, "PWD", ea);
+		del_export_lst_by_key(ea->export_lst, "PWD", ea);
+		store_arg_in_export(ea, "PWD", ea->current_pwd, EXPORT_NEW);
+		store_arg_in_env(ea, "PWD", ea->current_pwd, EXPORT_NEW);
+	}
 }
 
 void	store_stdfd(t_exec_attr *ea)

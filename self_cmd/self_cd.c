@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:31:45 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/14 16:21:05 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/14 16:22:06 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	x_chdir(char *arg, t_exec_attr *ea)
 	}
 	else
 		path = ft_strdup(arg);
-		new_pwd = get_new_pwd(ea, path);
+	new_pwd = get_new_pwd(ea, path);
 	if (new_pwd == NULL)
 		return (1);
 	update_all_environ(new_pwd, ea);
