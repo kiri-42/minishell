@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:31:22 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/13 21:50:27 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/14 15:27:06 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*get_pathname(t_exec_attr *ea)
 	if (lst == NULL)
 		return (NULL);
 	pathname = ft_kvsget_value(lst->content);
-	if (ft_strlen(pathname) == 0)
+	if (!pathname || ft_strlen(pathname) == 0)
 		return (NULL);
 	return (pathname);
 }
