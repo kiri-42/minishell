@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   register_heredocs.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:15:12 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/17 23:15:13 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:14:00 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	register_heredocs(t_lexer *lexer, char *delimiter)
 
 	tmpfile = get_tmpfile_name(ft_itoa(ft_lstsize(lexer->io_here_delimiters)));
 	create_tmpfile(tmpfile);
-	if (ft_kvsget(lexer->heredocs, delimiter) != NULL)
-		exit(EXIT_FAILURE);
 	kvs = ft_kvsnew(delimiter, tmpfile);
 	free(tmpfile);
 	ft_lstadd_back(&lexer->heredocs, ft_lstnew(kvs));
