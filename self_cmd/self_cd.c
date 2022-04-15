@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:31:45 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/14 16:57:15 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/15 15:08:09 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ int	x_chdir(char *arg, t_exec_attr *ea)
 		create_virtual_path(arg, ea);
 		return (1);
 	}
-	if (is_end_of_slash(arg)){
+	if (is_end_of_slash(arg))
+	{
 		path = create_str_removed_end(arg);
 	}
 	else

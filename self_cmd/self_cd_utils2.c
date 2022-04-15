@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   self_cd_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkirihar <tkirihar@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:02:13 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/03/26 15:43:29 by tkirihar         ###   ########.fr       */
+/*   Updated: 2022/04/15 15:55:48 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,12 @@ void	create_virtual_path(char *path, t_exec_attr *ea)
 	new_pwd = x_getcwd(ea);
 	if (new_pwd == NULL)
 	{
-		new_pwd = create_new_pwd(pwd, path);
+		if (!pwd || is_only_dot(pwd))
+			new_pwd = create_new_pwd("", path);
+		else if (is_only_dot(path))
+			new_pwd = create_new_pwd(pwd, "");
+		else
+			new_pwd = create_new_pwd(pwd, path);
 		ft_putstr_fd("cd: error retrieving current directory: \
 getcwd: cannot access parent directories: \
 No such file or directory\n", STDERR_FILENO);

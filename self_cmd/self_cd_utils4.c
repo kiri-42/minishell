@@ -6,24 +6,17 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 16:00:06 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/14 16:14:50 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/15 15:57:09 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "self_cmd.h"
 
-bool	is_valid_path(char *pwd)
-{
-	size_t	i;
-	
+bool	is_only_dot(char *pwd)
+{	
 	if (!pwd)
 		return (false);
-	i = 0;
-	while(pwd[i])
-	{
-		if (pwd[i] != '.' || pwd[i] != '/')
-			return (true);
-		i++;
-	}
+	if (is_same_str(pwd, ".") || is_same_str(pwd, "./"))
+		return (true);
 	return (false);
 }

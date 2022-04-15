@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 23:32:03 by tkirihar          #+#    #+#             */
-/*   Updated: 2022/04/14 16:00:05 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/04/15 15:57:06 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char		*remove_relative(char *path);
 char		*create_str_removed_end(char *path);
 
 // self_cd_utils4.c
-bool		is_valid_path(char *pwd);
+bool	is_only_dot(char *pwd);
 
 // self_echo.c
 int			exec_self_echo(t_cmd *cmd, t_exec_attr *ea);
